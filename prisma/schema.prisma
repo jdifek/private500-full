@@ -14,8 +14,21 @@ datasource db {
 }
 
 model User {
-  id      String   @id @default(uuid()) // ID пользователя
-  reviews Review[] // Один пользователь может иметь несколько отзывов
+  id          String   @id @default(uuid()) // ID пользователя
+  name        String
+  secondName  String
+  sex         Sex      @default(MALE)
+  phoneNumber String
+  email       String
+  avatar      String
+  reviews     Review[] // Один пользователь может иметь несколько отзывов
+}
+
+model Products {
+  id          String      @id @default(uuid())
+  type        TypeProduct
+  image       String
+  description String
 }
 
 model Review {
@@ -25,6 +38,16 @@ model Review {
   status      Status @default(LIKE)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum TypeProduct {
+  SERVICE
+  MOBILEGAME
+}
+
+enum Sex {
+  MALE
+  FEMALE
 }
 
 enum Status {
