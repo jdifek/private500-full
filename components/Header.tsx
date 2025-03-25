@@ -40,7 +40,7 @@ export const Header = () => {
 				{/* <Image src='/RU.svg' width={25} height={25} alt='logo'></Image> */}
 				<div className='relative mt-3 lg:mt-0'>
 					<div
-						className='flex items-center w-fit min-w-[140px] text-gray-600 text-sm px-3 py-2 cursor-pointer pr-8'
+						className='flex items-center text-gray-600 text-sm px-3 py-2 cursor-pointer pr-8'
 						onClick={() => setIsOpen(!isOpen)}
 					>
 						<span>{selectedLanguage.name}</span>
