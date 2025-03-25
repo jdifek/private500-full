@@ -1,0 +1,196 @@
+{
+	"Header": {
+		"login": "Log in"
+	},
+	"Home": {
+		"titles": {
+			"services": "services",
+			"mobileGames": "mobile games"
+		},
+		"title": "CS2 Stats",
+		"subtitle": "Track your CS2 stats in Competitive and Premier matchmaking",
+		"signInWithSteam": "Sign in with Steam",
+		"viewYourStats": "VIEW YOUR STATS",
+		"steamBot": {
+			"introducing": "Introducing",
+			"title": "Steam Bot",
+			"beta": "Beta!",
+			"description": "Faster Tracking & Match Notifications",
+			"slotsRemaining": "${count} slots remaining",
+			"addToFriends": "Add to Friends"
+		},
+		"stats": {
+			"gamesProcessed": "games processed",
+			"playersSeen": "players seen",
+			"vacBansTracked": "vac bans tracked"
+		},
+		"postMatchAdvancedStats": {
+			"title": "Post Match Advanced Stats",
+			"description": "Once your match has been processed you can check out all of our advanced CS2 stats on the scoreboard. We've got all of the base stats, but you can see who was getting those entry frags, who was trading more than just skins and who was the clutch king!"
+		},
+		"roundByRoundMatchBreakdown": {
+			"title": "Round By Round Match Breakdown",
+			"description": "Offering detailed round details, such as how the round was won, if there was a clutch and full kill feeds. It's perfect for helping you find that round your friend died in the first 10 seconds!"
+		},
+		"automaticMatchTracking": {
+			"title": "Automatic match tracking",
+			"description": "No longer do you need to add games individually after they are over! All you have to do is login with Steam, add your game authentication code, maybe add a match if you don't already have one and then we will automatically add all of your new CS2 matches, helping you track your progress to Global Elite."
+		},
+		"detailedMatchHistory": {
+			"title": "Detailed Match History",
+			"description": "CS2 is great, but in-game you're only able to see your past 8 matches unless you downloaded the demo, that's not so great. We let you track your full match history."
+		},
+		"vacBanTracking": {
+			"title": "VAC Ban Tracking",
+			"description": "We're constantly checking our full database for both VAC and Overwatch bans. When players get banned you'll be able to see them on your played with tab in your profile. There's even a special filter to show only players you've played with who have been banned."
+		},
+		"trackPersonalProgress": {
+			"title": "Track Personal Progress",
+			"description": "After 1000 hours, sometimes you just want to see how much you've improved. You can check out the graphs on your profile to see just that. Remember tho as you rank up sometimes your stats will drop, but as they start rising again, you might just be ready to rank up again!"
+		},
+		"eseaIntegration": {
+			"csgostats": "csgostats",
+			"description": "If you want to play vs less cheaters but love our statistics, we now power the ESEA match pages!"
+		},
+		"getStarted": {
+			"title": "Get Started Now",
+			"description": "Start tracking your CS2 stats now, all you've got to do is sign in with Steam below and we'll guide you on the next steps after that!"
+		}
+	},
+	"About": {
+		"confidentiality": {
+			"privacyPolicy": {
+				"title": "Privacy policy",
+				"description": "This confidentiality agreement on the use of personal data (hereinafter referred to as the Confidentiality Agreement) regulates the procedure for collection, use and disclosure Administration of the website https://don-vip.com (Agent) information about the User (Principal), which may be recognized as information about the User. User (Principal), which may be recognized as confidential or as such in accordance with legislation of the Russian Federation Terms used in this Agreement on confidentiality, unless otherwise specified, shall be applied on terms and in the meaning defined by the Agency Agreement. The fact of the User's use of the site, as well as the conclusion of the Agency Agreement, is full and unconditional. Agreement is a full and unconditional acceptance of this Agreement. Agreement. Ignorance of these agreements does not release the User from responsibility for non-compliance with them. User from responsibility for non-compliance with their terms. If User does not agree with the terms of this Agreement or does not has the right to conclude the Agreement, the User should immediately stop any use of the site."
+			},
+			"sourcesOfInformation": {
+				"title": "1 SOURCES OF INFORMATION",
+				"description1": "1.1 The information referred to in this Agreement may be personalized (directly related to a specific individual or associated with them) or non-personalized (data about the Website User obtained without being linked to a specific person).",
+				"description2": "1.2 The Administration has access to information obtained through the following means: Information received during correspondence between the Administration and Website Users via email; Information provided by Users during registration on the website, the conclusion of an Agency Agreement, participation in events conducted by the Website Administration, surveys, applications, feedback forms, and through entries in online registration forms; Technical information — data about the User’s internet provider, IP address, characteristics of the User’s PC and software, data on files uploaded and downloaded to/from the website, etc.; Statistical data on an individual User’s preferences (thematic focus of viewed pages).",
+				"description3": "1.3 Under this Agreement, only information stored in the website’s database in encrypted form and accessible exclusively to the Website Administration may be considered confidential.",
+				"description4": "1.4 Information voluntarily posted by an individual in public sections of the website when filling out registration forms and accessible to any other website user, as well as information that can be freely obtained from other publicly available sources, is not considered confidential."
+			},
+			"security": {
+				"title": "2 SECURITY",
+				"description1": "2.1 The website administration uses modern technologies ensuring the confidentiality of personal data, data data obtained from registration forms left by Users site, in order to ensure maximum protection of information.",
+				"description2": "2.2 Access to personal information of the User is carried out through authorization system with login and password. The User undertakes independently ensure the safety of autorotation data and not to disclose them to third parties under any pretext. Under any pretext not to disclose them to third parties. Any changes to personal information made by means of the autorotation data will be considered to have been made personally data will be considered to have been made by the User personally.",
+				"description3": "2.3 Collection, storage, use, processing, disclosure of information, received by the Administration of the site as a result of visiting by the User of the site and/or filling out registration forms, including personal data of users, is carried out Administration of the site in accordance with the laws of the Russian Federation.",
+				"description4": "2.4 The user realizes and gives consent to the collection and processing of his personal data by the Administration of the site within the framework and in accordance with the legislation of the Russian Federation. Their personal data by the Administration of the site within the framework and for the purpose, stipulated by the terms of the Agency Agreement; undertakes to notify the Administration of the site about changes in his personal data."
+			},
+			"finalProvisions": {
+				"title": "3 FINAL PROVISIONS",
+				"description1": "3.1 The Principal interested in the Agent's services shall fill in a special form on the website. A special form on the website. When placing an order, the Principal specifies the UID, ID, Server ID, Zone ID, E-mail of the game account, for which the Digital Service is being purchased, as well as the amount of required game currency or required game items.",
+				"description2": "3.2 The activity of the Administration of the site is carried out in accordance with legislation of the Russian Federation. Any claims, disputes, official appeals will be considered exclusively in the order, provided by the legislation of the Russian Federation.",
+				"description3": "3.3 The site Administration is not shall not be liable for any direct or indirect losses, incurred by the Users or third parties, as well as for the lost profits in the use, impossibility of use or results of use of the site. or the results of the use of the site.",
+				"description4": "3.4 the terms of this Agreement may be changed by the Administration of the site in a unilaterally."
+			},
+			"aboutUs": "We are an authorized seller of Bigo Live diamonds. Bigo Live and this website are operated by separate independent companies and are not responsible for each other's business. Are not responsible for each other's business. Bigo Live and this website are operated by separate independent companies and are not responsible for each other's business. Responsibility for each other's services."
+		},
+		"contact": {
+			"title": "CONTACT US",
+			"forCooperationEmail": "For cooperation email",
+			"address": {
+				"title": "Address",
+				"label": "Russia, Nakhodka city"
+			},
+			"companyName": {
+				"title": "Company name",
+				"label": "S.P. Aslanyan David Armenovich"
+			},
+			"partnerCompany": {
+				"title": "Partner company",
+				"label": "DMME HK LIMITED"
+			},
+			"tin": "TIN",
+			"ogrnip": "OGRNIP",
+			"tel": "Tel."
+		},
+		"offer": {
+			"publicOffer": {
+				"title": "Public offer"
+			},
+			"generalProvisions": {
+				"title": "1 GENERAL PROVISIONS AND KEY TERMS",
+				"description1": "1.1 Seller: Sole Proprietor Aslanyan David Armenovich (TIN 250822605454).",
+				"description2": "1.2 Online store: https://don-vip.com. The seller conducts trade through this website, which features virtual goods offered to buyers, along with the terms of purchase and payment. The website is available 24/7. The store’s working hours (order processing and fulfillment) are daily from 09:00 to 21:00 Moscow time.",
+				"description3": "1.3 Buyer: Any individual who has placed an order for the purchase of a virtual product from the seller in accordance with the procedure established in Section 3 of this offer.",
+				"description4": "1.4 Offer: A public offer by the seller to any individual to conclude a purchase and sale agreement for a virtual product (hereinafter referred to as the 'Agreement') under the terms of this offer. The offer is public (Clause 2, Article 437 of the Civil Code of the Russian Federation). The offer comes into effect from the moment it is posted on the online store’s website at https://don-vip.com and remains valid until it is revoked. The seller has the right to modify or withdraw the offer unilaterally. Any changes take effect and are considered communicated to the buyer at the moment they are published on the specified web page. Orders placed before the modification or withdrawal of the offer shall be fulfilled under the terms of the offer that was in effect at the time of order placement."
+			},
+			"subjectOfContract": {
+				"title": "2 SUBJECT OF THE CONTRACT",
+				"description1": "2.1 The Seller undertakes to transfer into the ownership of the Buyer, and the buyer undertakes to pay for and accept the virtual goods, ordered under the terms of the offer in the online store."
+			},
+			"procedureForConcluding": {
+				"title": "3 PROCEDURE FOR CONCLUDING A CONTRACT, PLACING AN ORDER",
+				"description1": "3.1 The acceptance of the offer is recognized as the moment when the buyer places an order for a virtual product with the seller. From this moment, the contract is considered concluded.",
+				"description2": "3.2 The buyer may place an order by phone during the store’s working hours or independently on the website through the order form.",
+				"description3": "3.3 When placing an order, the buyer provides their name, email address, and contact phone number.",
+				"description4": "3.4 The order is considered completed at the moment of payment for the product.",
+				"description5": "3.5 By placing an order, the buyer confirms that they: ✔ Are a legally capable citizen. ✔ Have read the current version of the offer and agree to its terms. ✔ Undertake to pay for the product and accept it. ✔ Provide the seller with their personal data (name, phone number, email address) for processing to conclude and fulfill the contract. ✔ Consent to the processing of personal data for the purpose of receiving advertising messages about products and participating in prize draws among buyers. The buyer has the right to withdraw their consent by notifying the seller in writing via email. ✔ Give prior consent to receive promotional and informational messages. The buyer has the right to withdraw this consent by notifying the seller in writing via email."
+			},
+			"orderAndPayment": {
+				"title": "4 ORDER COST AND PAYMENT",
+				"description1": "4.1 The seller determines the price of the product unilaterally.",
+				"description2": "4.2 The product price is specified on the online store's website.",
+				"description3": "4.3 The buyer can only pay for the product via cashless payment. The buyer's obligation to pay for the product is considered fulfilled once the full payment amount is credited to the seller's bank account.",
+				"description4": "4.4 The seller provides the buyer with a receipt confirming the payment.",
+				"description5": "4.5 Ownership rights to the virtual product are transferred upon full payment."
+			},
+			"orderModification": {
+				"title": "5 ORDER MODIFICATION",
+				"description1": "5.1 The buyer has the right to modify the order by agreement with the seller. If the product has already been paid for, the seller will adjust the price and inform the buyer of any additional amount that needs to be paid."
+			},
+			"otherProvisions": {
+				"title": "6 OTHER PROVISIONS",
+				"description1": "6.1 Any matters not regulated by this offer shall be governed by the legislation of the Russian Federation.",
+				"description2": "6.2 Seller's details",
+				"soleProprietor": "Sole Proprietor: Aslanyan",
+				"tin": "TIN",
+				"ogrnip": "Primary State Registration Number (OGRNIP)",
+				"email": "Email",
+				"bankingDetails": "Banking details",
+				"settlementAccount": "Settlement account",
+				"bank": {
+					"title": "Bank",
+					"name": "JSC «TBank»",
+					"bic": "Bank Identification Code (BIC)",
+					"correspondentAccount": "Correspondent account"
+				}
+			}
+		}
+	},
+	"Coupon": {
+		"coupons": "Coupons",
+		"apply": "Apply",
+		"discount": "Discount",
+		"attention": "Attention! The minimum amount for purchase is 1 000 rubles",
+		"notCoupons": "You don't have any coupons yet",
+		"getDiscountCoupons": "Get discount coupons for your purchases"
+	},
+	"History": {
+		"shopping": "Shopping",
+		"notShopping": "You haven't shopped yet",
+		"buying": "Buying",
+		"player": "Player",
+		"server": "Server",
+		"diamonds": "Diamonds",
+		"deliveryStatus": {
+			"delivered": "Successful delivery",
+			"inDelivery": "In delivery",
+			"failed": "The payment didn't go through",
+			"formalized": "Formalized"
+		}
+	},
+	"Footer": {
+		"userAgreement": "user agreement",
+		"dataProcessingPolicy": "data processing policy",
+		"returnPolicy": "return policy",
+		"contactUs": "contact us",
+		"faq": "FAQ",
+		"rightsReserved": "All rights reserved."
+	},
+	"Components": {
+		"return": "Return",
+		"placeholder": "Find a service, or a game"
+	}
+}
