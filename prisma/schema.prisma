@@ -29,15 +29,18 @@ model Products {
   type        TypeProduct
   image       String
   description String
+  Review      Review[]
 }
 
 model Review {
   id          String @id @default(uuid()) // ID отзыва
   userId      String // ID пользователя (внешний ключ)
+  productId   String
   description String // Текст отзыва
   status      Status @default(LIKE)
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Products @relation(fields: [productId], references: [id])
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum TypeProduct {
