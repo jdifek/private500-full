@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,14 +8,18 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(uuid()) // ID пользователя
-  name        String
-  secondName  String
-  sex         Sex      @default(MALE)
-  phoneNumber String
-  email       String
-  avatar      String
-  reviews     Review[] // Один пользователь может иметь несколько отзывов
+  id             String   @id @default(uuid()) // ID пользователя
+  name           String
+  secondName     String
+  sex            Sex      @default(MALE)
+  phoneNumber    String
+  email          String   @unique
+  password       String 
+  avatar         String
+  accessToken    String?
+  refreshToken   String?
+  isEmailVerified Boolean  @default(false) // Подтвержден ли email
+  reviews        Review[] // Один пользователь может иметь несколько отзывов
 }
 
 model Products {
