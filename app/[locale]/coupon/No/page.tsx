@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const No = () => {
 	const tComponents = useTranslations('Components')
-	const tCoupon = useTranslations('Coupons')
+	const tCoupon = useTranslations('Coupon')
 
 	return (
 		<>

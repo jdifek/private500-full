@@ -6,7 +6,7 @@ const PromoCode = () => {
 	const [promoCode, setPromoCode] = useState('')
 	const [gameFound, setGameFound] = useState(false)
 	const tComponents = useTranslations('Components')
-	const tCoupon = useTranslations('Coupons')
+	const tCoupon = useTranslations('Coupon')
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setPromoCode(e.target.value)

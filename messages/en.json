@@ -1,7 +1,4 @@
 {
-	"Header": {
-		"login": "Log in"
-	},
 	"Home": {
 		"titles": {
 			"services": "services",
@@ -56,6 +53,34 @@
 			"title": "Get Started Now",
 			"description": "Start tracking your CS2 stats now, all you've got to do is sign in with Steam below and we'll guide you on the next steps after that!"
 		}
+	},
+	"Auth": {
+		"forgotYourPassword": {
+			"question": "Forgot your password?",
+			"answer": "Enter your e-mail or phone number and we will send you a link to reset your password."
+		},
+		"placeholders": {
+			"email": "Enter your e-mail or phone number",
+			"password": "Enter your password"
+		},
+		"youAgree": "By continuing, you agree to our",
+		"privacyPolicy": "privacy policy",
+		"signInWith": "Sign in with",
+		"notAccount": "You don't have an account?",
+		"signUp": "Sign up",
+		"login": "Log in",
+		"profileButtons": {
+			"shopping": "Shopping",
+			"coupons": "Coupons",
+			"chatbot": "Chatbot",
+			"settings": "Settings",
+			"logout": "Log out of the account"
+		},
+		"registration": "Registration",
+		"thanksForRegistering": "Thank you for registering",
+		"linkToActivate": "The link to activate your profile has been sent to your mailbox",
+		"passwordResetAccepted": "Password reset request accepted",
+		"linkToResetPassword": "Password reset link sent to your mailbox"
 	},
 	"About": {
 		"confidentiality": {
@@ -181,6 +206,39 @@
 			"formalized": "Formalized"
 		}
 	},
+	"Order": {
+		"productInformation": {
+			"title": "product information",
+			"label": "Bigo live is a global social video streaming platform, where users stream to showcase their moments. of their lives, showcase their talents."
+		},
+		"placeholder": "USER ID",
+		"selectAmountOfRep": "1 SELECT THE AMOUNT OF REPLENISHMENT",
+		"rub": "rub",
+		"enterId": "2 ENTER YOUR ID (DO NOT ENTER «ID:»)",
+		"howEnterId": "How to properly enter your ID and server number is in your personal profile. These data can usually be found in the «Settings» or «Profile Information».",
+		"confirming": "I CONFIRM THAT THE DATA HAS BEEN ENTERED CORRECTLY",
+		"whereToFindId": {
+			"title": "Where to find",
+			"item1": "1. Log in to the Bigo Live app",
+			"item2": "2. Go to the I page",
+			"item3": "3. The Bigo Live ID will be displayed under your nickname",
+			"item4": "4. Copy and enter the numbers on the website"
+		},
+		"selectPayment": "3 SELECT A PAYMENT METHOD"
+	},
+	"Review": {
+		"importantForUs": "The opinion of our customers is extremely important to us! We are constantly striving to improve the quality and your experience of using our store. Therefore. we will be very grateful if you share your feedback with other users! 😊",
+		"allReviews": "All reviews",
+		"leaveReview": "Leave a review",
+		"reviews": {
+			"review1": "Excellent service! Everything arrived very quickly. At first, I thought it was a scam, but no, everything was legit. Thank you very much!",
+			"review2": "I will never use this service again! Because of you, my beard fell out, and curly hair grew on my head!",
+			"review3": "Brother jan, thanks for the awesome service! I'm loving the speed, I'll always buy here from now on!"
+		},
+		"thanksForFeedback": "Thank you for your feedback",
+		"wePostingSoon": "We will be posting your review shortly!",
+		"placeholder": "Share your impressions about our service"
+	},
 	"Footer": {
 		"userAgreement": "user agreement",
 		"dataProcessingPolicy": "data processing policy",
@@ -191,6 +249,8 @@
 	},
 	"Components": {
 		"return": "Return",
-		"placeholder": "Find a service, or a game"
+		"placeholder": "Find a service, or a game",
+		"send": "send",
+		"login": "Log in"
 	}
 }
