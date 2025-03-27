@@ -8,16 +8,31 @@ const Footer = () => {
 	return (
 		<footer className='px-3'>
 			<div className='flex items-center justify-between '>
-				<Image src='/Logo.svg' width={110} height={60} alt='logo'></Image>
-				<Image src='/Icon pay.svg' width={30} height={30} alt='logo'></Image>
+				<Link href='/'>
+					<Image src='/Logo.svg' width={130} height={70} alt='logo'></Image>
+				</Link>
+				<a href='https://www.tbank.ru/' target='_blank'>
+					<Image src='/Icon pay.svg' width={30} height={30} alt='logo'></Image>
+				</a>
 			</div>
 
 			<ul className='font-normal text-[13px] leading-[162%] text-[#383838]'>
-				<li>{tFooter('userAgreement')}</li>
-				<li>{tFooter('dataProcessingPolicy')}</li>
-				<li>{tFooter('returnPolicy')}</li>
+				<li>
+					<Link href='/about/confidentiality'>{tFooter('userAgreement')}</Link>
+				</li>
+				<li>
+					<Link href='/about/confidentiality'>
+						{tFooter('dataProcessingPolicy')}
+					</Link>
+				</li>
+				<li>
+					<Link href='/about/oferta'>{tFooter('returnPolicy')}</Link>
+				</li>
 				<li>
 					<Link href='/about/contact'>{tFooter('contactUs')}</Link>
+				</li>
+				<li>
+					<Link href='/review/base'>{tFooter('reviews')}</Link>
 				</li>
 				<li>{tFooter('faq')}</li>
 			</ul>

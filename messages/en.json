@@ -57,10 +57,10 @@
 	"Auth": {
 		"forgotYourPassword": {
 			"question": "Forgot your password?",
-			"answer": "Enter your e-mail or phone number and we will send you a link to reset your password."
+			"answer": "Enter your e-mail and we will send you a link to reset your password."
 		},
 		"placeholders": {
-			"email": "Enter your e-mail or phone number",
+			"email": "Enter your e-mail",
 			"password": "Enter your password"
 		},
 		"youAgree": "By continuing, you agree to our",
@@ -69,6 +69,8 @@
 		"notAccount": "You don't have an account?",
 		"signUp": "Sign up",
 		"login": "Log in",
+		"loginFailed": "Incorrect login or password",
+		"registrationFailed": "User is already registered",
 		"profileButtons": {
 			"shopping": "Shopping",
 			"coupons": "Coupons",
@@ -244,6 +246,7 @@
 		"dataProcessingPolicy": "data processing policy",
 		"returnPolicy": "return policy",
 		"contactUs": "contact us",
+		"reviews": "reviews",
 		"faq": "FAQ",
 		"rightsReserved": "All rights reserved."
 	},
@@ -251,6 +254,7 @@
 		"return": "Return",
 		"placeholder": "Find a service, or a game",
 		"send": "send",
-		"login": "Log in"
+		"login": "Log in",
+		"loading": "Loading..."
 	}
 }
