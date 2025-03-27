@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { setTokens } from "@/lib/auth";
 import $api from "@/app/http";
 
@@ -16,6 +16,8 @@ const Login = () => {
   const tAuth = useTranslations("Auth");
   const tComponents = useTranslations("Components");
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1] || "ru";
 
   useEffect(() => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,13 +45,21 @@ const Login = () => {
       setTokens(accessToken, refreshToken);
       // Перенаправляем в зависимости от роли
       if (role === "ADMIN") {
-        router.push("/users");
+        router.push("/");
       } else {
         router.push("/"); // Главная страница для USER
       }
     } catch (err: any) {
       setError(err.response?.data?.error || tAuth("loginFailed"));
     }
+  };
+
+  const handleClickForgotPass = () => {
+    router.push(`/${locale}/auth/forgot-password`);
+  };
+
+  const handleClickRegister = () => {
+    router.push(`/${locale}/auth/register`);
   };
 
   return (
@@ -85,7 +95,10 @@ const Login = () => {
 
       {error && <p className="text-center text-red-500 mb-5">{error}</p>}
 
-      <p className="text-end text-[13px] leading-[162%] mb-5 font-normal text-black capitalize">
+      <p
+        onClick={handleClickForgotPass}
+        className="text-end text-[13px] leading-[162%] mb-5 font-normal text-black capitalize"
+      >
         {tAuth("forgotYourPassword.question")}
       </p>
 
@@ -98,7 +111,7 @@ const Login = () => {
       </button>
 
       <p className="text-center text-[13px] mb-5 font-normal text-[#929294] flex flex-col">
-        <span>{tAuth("you Agree")}</span>
+        <span>{tAuth("youAgree")}</span>
         <span className="text-black">{tAuth("privacyPolicy")}</span>
       </p>
 
@@ -113,7 +126,9 @@ const Login = () => {
 
       <p className="text-center text-[13px] mb-7 leading-[154%] font-normal text-[#929294]">
         {tAuth("notAccount")}{" "}
-        <span className="text-black">{tAuth("signUp")}</span>
+        <span onClick={handleClickRegister} className="text-black">
+          {tAuth("signUp")}
+        </span>
       </p>
     </>
   );

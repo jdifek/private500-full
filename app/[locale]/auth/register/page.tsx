@@ -47,6 +47,11 @@ const Register = () => {
     }
   };
 
+  const handleClickForgotPass = () => {
+    router.push(`/${locale}/auth/forgot-password`);
+  };
+
+
   return (
     <>
       <h2 className="my-5 font-medium text-[36px] text-center text-black">
@@ -80,7 +85,8 @@ const Register = () => {
 
       {error && <p className="text-center text-red-500 mb-5">{error}</p>}
 
-      <p className="text-end text-[13px] leading-[162%] mb-5 font-normal text-black capitalize">
+      <p         onClick={handleClickForgotPass}
+ className="text-end text-[13px] leading-[162%] mb-5 font-normal text-black capitalize">
         {tAuth("forgotYourPassword.question")}
       </p>
 
@@ -93,7 +99,7 @@ const Register = () => {
       </button>
 
       <p className="text-center text-[13px] mb-5 font-normal text-[#929294] flex flex-col">
-        <span>{tAuth("you Agree")}</span>
+        <span>{tAuth("youAgree")}</span>
         <span className="text-black">{tAuth("privacyPolicy")}</span>
       </p>
 
