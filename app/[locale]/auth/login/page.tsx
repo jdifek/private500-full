@@ -94,13 +94,15 @@ const Login = () => {
       </div>
 
       {error && <p className="text-center text-red-500 mb-5">{error}</p>}
+      <div className="flex justify-end">
 
       <p
         onClick={handleClickForgotPass}
-        className="text-end text-[13px] leading-[162%] mb-5 font-normal text-black capitalize"
+        className="text-end text-[13px]  leading-[162%] mb-5 font-normal text-black capitalize inline-block"
       >
         {tAuth("forgotYourPassword.question")}
       </p>
+      </div>
 
       <button
         onClick={handleLogin}

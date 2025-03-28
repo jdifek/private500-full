@@ -8,19 +8,19 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(uuid()) // ID пользователя
-  name           String?  // Опционально, заполняется позже
-  secondName     String?  // Опционально, заполняется позже
-  sex            Sex      @default(MALE) // По умолчанию, можно изменить
-  phoneNumber    String?  // Опционально, заполняется позже
-  email          String   @unique // Обязательно для регистрации
-  password       String   // Хэш пароля
-  avatar         String?  // Опционально, заполняется позже
-  accessToken    String?
-  refreshToken   String?
+  id              String   @id @default(uuid()) // ID пользователя
+  name            String? // Опционально, заполняется позже
+  secondName      String? // Опционально, заполняется позже
+  sex             Sex      @default(MALE) // По умолчанию, можно изменить
+  phoneNumber     String? // Опционально, заполняется позже
+  email           String   @unique // Обязательно для регистрации
+  password        String // Хэш пароля
+  avatar          String? // Опционально, заполняется позже
+  accessToken     String?  @unique // Сделать уникальным
+  refreshToken    String?
   isEmailVerified Boolean  @default(false) // Подтвержден ли email
-  role           Role     @default(USER) // Добавляем роль, по умолчанию USER
-  reviews        Review[] // Один пользователь может иметь несколько отзывов
+  role            Role     @default(USER) // Добавляем роль, по умолчанию USER
+  reviews         Review[] // Один пользователь может иметь несколько отзывов
 }
 
 model Products {
@@ -28,6 +28,7 @@ model Products {
   type        TypeProduct
   image       String
   description String
+  name        String
   Review      Review[]
 }
 
@@ -41,10 +42,12 @@ model Review {
   product Products @relation(fields: [productId], references: [id])
   user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
 enum Role {
   ADMIN
   USER
 }
+
 enum TypeProduct {
   SERVICE
   MOBILEGAME
