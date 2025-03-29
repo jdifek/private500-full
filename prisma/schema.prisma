@@ -6,21 +6,20 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
 model User {
-  id              String   @id @default(uuid()) // ID пользователя
-  name            String? // Опционально, заполняется позже
-  secondName      String? // Опционально, заполняется позже
-  sex             Sex      @default(MALE) // По умолчанию, можно изменить
-  phoneNumber     String? // Опционально, заполняется позже
-  email           String   @unique // Обязательно для регистрации
-  password        String // Хэш пароля
-  avatar          String? // Опционально, заполняется позже
-  accessToken     String?  @unique // Сделать уникальным
+  id              String   @id @default(uuid())
+  name            String?
+  secondName      String?
+  sex             Sex      @default(MALE)
+  phoneNumber     String?  @unique // Добавляем @unique
+  email           String?   @unique
+  password        String
+  avatar          String?
+  accessToken     String?  @unique
   refreshToken    String?
-  isEmailVerified Boolean  @default(false) // Подтвержден ли email
-  role            Role     @default(USER) // Добавляем роль, по умолчанию USER
-  reviews         Review[] // Один пользователь может иметь несколько отзывов
+  isEmailVerified Boolean  @default(false)
+  role            Role     @default(USER)
+  reviews         Review[]
 }
 
 model Products {

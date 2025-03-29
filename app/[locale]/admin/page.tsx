@@ -8,7 +8,6 @@ import {
   Products,
   Review,
   Role,
-  Sex,
   TypeProduct,
   Status,
 } from "@prisma/client";
@@ -21,12 +20,12 @@ export default function AdminDashboard() {
 
   // Users management
   const [users, setUsers] = useState<User[]>([]);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   // Products management
   const [products, setProducts] = useState<Products[]>([]);
   const [newProduct, setNewProduct] = useState({
     type: TypeProduct.SERVICE,
+    name: "",
     image: "",
     description: "",
   });
@@ -98,6 +97,7 @@ export default function AdminDashboard() {
       setProducts([...products, response.data]);
       // Reset form
       setNewProduct({
+        name: "",
         type: TypeProduct.SERVICE,
         image: "",
         description: "",
@@ -198,26 +198,26 @@ export default function AdminDashboard() {
         {activeTab === "products" && (
           <div>
             <h2 className="text-2xl mb-4">Products Management</h2>
-
-            {/* Create Product Form */}
             <form onSubmit={handleCreateProduct} className="mb-6 border p-4">
               <h3 className="text-xl mb-4">Create New Product</h3>
+              <div className="mb-4">
+                <label className="block mb-2">Name</label>
+                <input
+                  type="text"
+                  value={newProduct.name}
+                  onChange={(e) => setNewProduct((prev) => ({ ...prev, name: e.target.value }))}
+                  className="w-full border p-2"
+                />
+              </div>
               <div className="mb-4">
                 <label className="block mb-2">Type</label>
                 <select
                   value={newProduct.type}
-                  onChange={(e) =>
-                    setNewProduct((prev) => ({
-                      ...prev,
-                      type: e.target.value as TypeProduct,
-                    }))
-                  }
+                  onChange={(e) => setNewProduct((prev) => ({ ...prev, type: e.target.value as TypeProduct }))}
                   className="w-full border p-2"
                 >
                   {Object.values(TypeProduct).map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
+                    <option key={type} value={type}>{type}</option>
                   ))}
                 </select>
               </div>
@@ -226,12 +226,7 @@ export default function AdminDashboard() {
                 <input
                   type="text"
                   value={newProduct.image}
-                  onChange={(e) =>
-                    setNewProduct((prev) => ({
-                      ...prev,
-                      image: e.target.value,
-                    }))
-                  }
+                  onChange={(e) => setNewProduct((prev) => ({ ...prev, image: e.target.value }))}
                   className="w-full border p-2"
                 />
               </div>
@@ -239,30 +234,20 @@ export default function AdminDashboard() {
                 <label className="block mb-2">Description</label>
                 <textarea
                   value={newProduct.description}
-                  onChange={(e) =>
-                    setNewProduct((prev) => ({
-                      ...prev,
-                      description: e.target.value,
-                    }))
-                  }
+                  onChange={(e) => setNewProduct((prev) => ({ ...prev, description: e.target.value }))}
                   className="w-full border p-2"
                 />
               </div>
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                Create Product
-              </button>
+              <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Product</button>
             </form>
 
-            {/* Products List */}
             {loading.products ? (
               <p>Loading products...</p>
             ) : (
               <table className="w-full border">
                 <thead>
                   <tr className="bg-gray-100">
+                    <th className="border p-2">Name</th>
                     <th className="border p-2">Type</th>
                     <th className="border p-2">Description</th>
                     <th className="border p-2">Image</th>
@@ -271,18 +256,11 @@ export default function AdminDashboard() {
                 <tbody>
                   {products.map((product) => (
                     <tr key={product.id}>
+                      <td className="border p-2">{product.name}</td>
                       <td className="border p-2">{product.type}</td>
                       <td className="border p-2">{product.description}</td>
                       <td className="border p-2">
-                        {product.image ? (
-                          <img
-                            src={product.image}
-                            alt="Product"
-                            className="w-16 h-16 object-cover"
-                          />
-                        ) : (
-                          "No Image"
-                        )}
+                        {product.image ? <img src={product.image} alt="Product" className="w-16 h-16 object-cover" /> : "No Image"}
                       </td>
                     </tr>
                   ))}
@@ -318,7 +296,7 @@ export default function AdminDashboard() {
                       </td>
                       <td className="border p-2">
                         {products.find((p) => p.id === review.productId)
-                          ?.description || "Unknown"}
+                          ?.name || "Unknown"}
                       </td>
                       <td className="border p-2">{review.description}</td>
                       <td className="border p-2">

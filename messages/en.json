@@ -60,7 +60,7 @@
 			"answer": "Enter your e-mail and we will send you a link to reset your password."
 		},
 		"placeholders": {
-			"email": "Enter your e-mail",
+			"email": "Enter your email or phone number",
 			"password": "Enter your password"
 		},
 		"youAgree": "By continuing, you agree to our",

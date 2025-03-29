@@ -26,15 +26,7 @@ export async function GET(request: Request) {
       );
     }
 
-    const users = await prisma.products.findMany({
-      select: {
-        id: true,
-        name: true,
-        type: true,
-        image: true,
-        description: true,
-      },
-    });
+    const users = await prisma.review.findMany();
     return NextResponse.json(users, { status: 200 });
   } catch (error) {
     return NextResponse.json(
@@ -49,42 +41,35 @@ export async function POST(request: Request) {
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return NextResponse.json({ error: "No token provided" }, { status: 401 });
   }
-
   const token = authHeader.split(" ")[1];
+
   try {
     const decoded = jwt.verify(
       token,
       process.env.JWT_ACCESS_SECRET as string
-    ) as {
-      userId: string;
-      email: string;
-      role: string;
-    };
+    ) as { userId: string }; // 👈 Декодируем токен и получаем userId
 
-    if (decoded.role !== "ADMIN") {
-      return NextResponse.json(
-        { error: "Forbidden: Admins only" },
-        { status: 403 }
-      );
+    console.log(decoded);
+    
+    if (!decoded.userId) {
+      return NextResponse.json({ error: "Invalid user ID" }, { status: 400 });
     }
 
-    // Get the request body
     const body = await request.json();
+    const { productId, description, status } = body;
 
-    // Create the product with the data from the frontend
-    const product = await prisma.products.create({
+    const review = await prisma.review.create({
       data: {
-        name: body.name,
-        type: body.type,
-        image: body.image,
-        description: body.description,
-        // Add any other required fields based on your Prisma schema
+        userId: decoded.userId, // 👈 Берём userId из токена
+        productId,
+        description,
+        status,
       },
     });
 
-    return NextResponse.json(product, { status: 201 });
+    return NextResponse.json(review, { status: 201 });
   } catch (error) {
-    console.error("Product creation error:", error);
+    console.error("Review creation error:", error);
     return NextResponse.json(
       { error: "Invalid or expired token" },
       { status: 401 }

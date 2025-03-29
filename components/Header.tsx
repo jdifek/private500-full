@@ -65,7 +65,7 @@ export const Header = () => {
 
           {/* Выпадающий список языков */}
           {isOpen && (
-            <div className="absolute -left-10 mt-2 w-44 bg-[#f3f4f7] border-x-[0.3px] border-b-[0.3px] border-[#aaaaab] rounded-b-[20px] px-2 py-1.5 z-10">
+            <div className="absolute -left-25 mt-2 w-44 bg-[#f3f4f7] border-x-[0.3px] border-b-[0.3px] border-[#aaaaab] rounded-b-[20px] px-2 py-1.5 z-10">
               {LANGUAGES.map((lang) => (
                 <div
                   key={lang.code}

@@ -34,7 +34,7 @@ const Footer = () => {
 				<li>
 					<Link href='/review/base'>{tFooter('reviews')}</Link>
 				</li>
-				<li>{tFooter('faq')}</li>
+				<Link href='/about/faq'>{tFooter('faq')}</Link>
 			</ul>
 
 			<p className=' font-light text-[11px] leading-[191%] text-[#7a7a7a]'>

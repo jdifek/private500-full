@@ -8,7 +8,7 @@ import { setTokens } from "@/lib/auth";
 import $api from "@/app/http";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState<null | boolean>(null);
   const [isPasswordValid, setIsPasswordValid] = useState<null | boolean>(null);
@@ -19,11 +19,21 @@ const Login = () => {
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "ru";
 
+  // Регулярные выражения для проверки identifier и телефона
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\+?[1-9]\d{9,14}$/; // Поддерживает номера от 10 до 15 цифр
+
   useEffect(() => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsEmailValid(email ? emailRegex.test(email) : null);
-    setIsPasswordValid(password ? password.length >= 8 : null);
-  }, [email, password]);
+    if (!identifier) {
+      setIsEmailValid(null);
+    } else if (emailRegex.test(identifier) || phoneRegex.test(identifier)) {
+      setIsEmailValid(true);
+    } else {
+      setIsEmailValid(false);
+    }
+
+    setIsPasswordValid(password.length >= 8);
+  }, [identifier, password]);
 
   const getBorderColor = (isValid: boolean | null) => {
     if (isValid === null) return "border-[#8b8b8b]";
@@ -40,7 +50,7 @@ const Login = () => {
     if (!isFormValid) return;
 
     try {
-      const response = await $api.post("/auth/login", { email, password });
+      const response = await $api.post("/auth/login", { identifier, password });
       const { accessToken, refreshToken, role } = response.data;
       setTokens(accessToken, refreshToken);
       // Перенаправляем в зависимости от роли
@@ -67,14 +77,15 @@ const Login = () => {
       <h2 className="my-5 font-medium text-[36px] text-center text-black">
         {tAuth("login")}
       </h2>
+      
 
       {/* Поля ввода */}
       <div className="flex gap-2 flex-col mb-2">
         <input
           type="text"
           placeholder={tAuth("placeholders.email")}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={identifier}
+          onChange={(e) => setIdentifier(e.target.value)}
           className={`border rounded-[12px] p-[8px] w-full h-[40px] bg-[#f3f4f7] transition-all
             placeholder:text-[13px] placeholder:leading-[162%] 
             placeholder:font-light placeholder:text-[#929294] placeholder:lowercase
@@ -95,13 +106,12 @@ const Login = () => {
 
       {error && <p className="text-center text-red-500 mb-5">{error}</p>}
       <div className="flex justify-end">
-
-      <p
-        onClick={handleClickForgotPass}
-        className="text-end text-[13px]  leading-[162%] mb-5 font-normal text-black capitalize inline-block"
-      >
-        {tAuth("forgotYourPassword.question")}
-      </p>
+        <p
+          onClick={handleClickForgotPass}
+          className="text-end text-[13px]  leading-[162%] mb-5 font-normal text-black capitalize inline-block"
+        >
+          {tAuth("forgotYourPassword.question")}
+        </p>
       </div>
 
       <button
