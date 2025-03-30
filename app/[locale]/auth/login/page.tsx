@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { setTokens } from "@/lib/auth";
 import $api from "@/app/http";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Login = () => {
   const [identifier, setIdentifier] = useState("");
@@ -18,6 +19,7 @@ const Login = () => {
   const router = useRouter();
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "ru";
+  const { setIsAuthenticated } = useAuth();
 
   // Регулярные выражения для проверки identifier и телефона
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,6 +55,8 @@ const Login = () => {
       const response = await $api.post("/auth/login", { identifier, password });
       const { accessToken, refreshToken, role } = response.data;
       setTokens(accessToken, refreshToken);
+      setIsAuthenticated(true);
+
       // Перенаправляем в зависимости от роли
       if (role === "ADMIN") {
         router.push("/");

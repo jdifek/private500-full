@@ -6,13 +6,13 @@ const Footer = () => {
 	const tFooter = useTranslations('Footer')
 
 	return (
-		<footer className='px-3'>
+		<footer className='px-3 mb-16'>
 			<div className='flex items-center justify-between '>
 				<Link href='/'>
-					<Image src='/Logo.svg' width={130} height={70} alt='logo'></Image>
+					<Image src='/Logo.svg' width={130} height={70} alt={tFooter('logo')}></Image>
 				</Link>
 				<a href='https://www.tbank.ru/' target='_blank'>
-					<Image src='/Icon pay.svg' width={30} height={30} alt='logo'></Image>
+					<Image src='/Icon pay.svg' width={30} height={30} alt={tFooter('paymentIcon')}></Image>
 				</a>
 			</div>
 

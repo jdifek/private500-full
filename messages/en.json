@@ -93,8 +93,8 @@
 			"sourcesOfInformation": {
 				"title": "1 SOURCES OF INFORMATION",
 				"description1": "1.1 The information referred to in this Agreement may be personalized (directly related to a specific individual or associated with them) or non-personalized (data about the Website User obtained without being linked to a specific person).",
-				"description2": "1.2 The Administration has access to information obtained through the following means: Information received during correspondence between the Administration and Website Users via email; Information provided by Users during registration on the website, the conclusion of an Agency Agreement, participation in events conducted by the Website Administration, surveys, applications, feedback forms, and through entries in online registration forms; Technical information — data about the User’s internet provider, IP address, characteristics of the User’s PC and software, data on files uploaded and downloaded to/from the website, etc.; Statistical data on an individual User’s preferences (thematic focus of viewed pages).",
-				"description3": "1.3 Under this Agreement, only information stored in the website’s database in encrypted form and accessible exclusively to the Website Administration may be considered confidential.",
+				"description2": "1.2 The Administration has access to information obtained through the following means: Information received during correspondence between the Administration and Website Users via email; Information provided by Users during registration on the website, the conclusion of an Agency Agreement, participation in events conducted by the Website Administration, surveys, applications, feedback forms, and through entries in online registration forms; Technical information — data about the User's internet provider, IP address, characteristics of the User's PC and software, data on files uploaded and downloaded to/from the website, etc.; Statistical data on an individual User's preferences (thematic focus of viewed pages).",
+				"description3": "1.3 Under this Agreement, only information stored in the website's database in encrypted form and accessible exclusively to the Website Administration may be considered confidential.",
 				"description4": "1.4 Information voluntarily posted by an individual in public sections of the website when filling out registration forms and accessible to any other website user, as well as information that can be freely obtained from other publicly available sources, is not considered confidential."
 			},
 			"security": {
@@ -111,7 +111,7 @@
 				"description3": "3.3 The site Administration is not shall not be liable for any direct or indirect losses, incurred by the Users or third parties, as well as for the lost profits in the use, impossibility of use or results of use of the site. or the results of the use of the site.",
 				"description4": "3.4 the terms of this Agreement may be changed by the Administration of the site in a unilaterally."
 			},
-			"aboutUs": "We are an authorized seller of Bigo Live diamonds. Bigo Live and this website are operated by separate independent companies and are not responsible for each other's business. Are not responsible for each other's business. Bigo Live and this website are operated by separate independent companies and are not responsible for each other's business. Responsibility for each other's services."
+			"aboutUs": "We are an authorized seller of Bigo Live diamonds. Bigo Live and this website are operated by separate independent companies and are not responsible for each other's business or services."
 		},
 		"contact": {
 			"title": "CONTACT US",
@@ -139,9 +139,9 @@
 			"generalProvisions": {
 				"title": "1 GENERAL PROVISIONS AND KEY TERMS",
 				"description1": "1.1 Seller: Sole Proprietor Aslanyan David Armenovich (TIN 250822605454).",
-				"description2": "1.2 Online store: https://don-vip.com. The seller conducts trade through this website, which features virtual goods offered to buyers, along with the terms of purchase and payment. The website is available 24/7. The store’s working hours (order processing and fulfillment) are daily from 09:00 to 21:00 Moscow time.",
+				"description2": "1.2 Online store: https://don-vip.com. The seller conducts trade through this website, which features virtual goods offered to buyers, along with the terms of purchase and payment. The website is available 24/7. The store's working hours (order processing and fulfillment) are daily from 09:00 to 21:00 Moscow time.",
 				"description3": "1.3 Buyer: Any individual who has placed an order for the purchase of a virtual product from the seller in accordance with the procedure established in Section 3 of this offer.",
-				"description4": "1.4 Offer: A public offer by the seller to any individual to conclude a purchase and sale agreement for a virtual product (hereinafter referred to as the 'Agreement') under the terms of this offer. The offer is public (Clause 2, Article 437 of the Civil Code of the Russian Federation). The offer comes into effect from the moment it is posted on the online store’s website at https://don-vip.com and remains valid until it is revoked. The seller has the right to modify or withdraw the offer unilaterally. Any changes take effect and are considered communicated to the buyer at the moment they are published on the specified web page. Orders placed before the modification or withdrawal of the offer shall be fulfilled under the terms of the offer that was in effect at the time of order placement."
+				"description4": "1.4 Offer: A public offer by the seller to any individual to conclude a purchase and sale agreement for a virtual product (hereinafter referred to as the 'Agreement') under the terms of this offer. The offer is public (Clause 2, Article 437 of the Civil Code of the Russian Federation). The offer comes into effect from the moment it is posted on the online store's website at https://don-vip.com and remains valid until it is revoked. The seller has the right to modify or withdraw the offer unilaterally. Any changes take effect and are considered communicated to the buyer at the moment they are published on the specified web page. Orders placed before the modification or withdrawal of the offer shall be fulfilled under the terms of the offer that was in effect at the time of order placement."
 			},
 			"subjectOfContract": {
 				"title": "2 SUBJECT OF THE CONTRACT",
@@ -150,7 +150,7 @@
 			"procedureForConcluding": {
 				"title": "3 PROCEDURE FOR CONCLUDING A CONTRACT, PLACING AN ORDER",
 				"description1": "3.1 The acceptance of the offer is recognized as the moment when the buyer places an order for a virtual product with the seller. From this moment, the contract is considered concluded.",
-				"description2": "3.2 The buyer may place an order by phone during the store’s working hours or independently on the website through the order form.",
+				"description2": "3.2 The buyer may place an order by phone during the store's working hours or independently on the website through the order form.",
 				"description3": "3.3 When placing an order, the buyer provides their name, email address, and contact phone number.",
 				"description4": "3.4 The order is considered completed at the moment of payment for the product.",
 				"description5": "3.5 By placing an order, the buyer confirms that they: ✔ Are a legally capable citizen. ✔ Have read the current version of the offer and agree to its terms. ✔ Undertake to pay for the product and accept it. ✔ Provide the seller with their personal data (name, phone number, email address) for processing to conclude and fulfill the contract. ✔ Consent to the processing of personal data for the purpose of receiving advertising messages about products and participating in prize draws among buyers. The buyer has the right to withdraw their consent by notifying the seller in writing via email. ✔ Give prior consent to receive promotional and informational messages. The buyer has the right to withdraw this consent by notifying the seller in writing via email."
@@ -211,7 +211,7 @@
 	"Order": {
 		"productInformation": {
 			"title": "product information",
-			"label": "Bigo live is a global social video streaming platform, where users stream to showcase their moments. of their lives, showcase their talents."
+			"label": "Bigo live is a global social video streaming platform, where users stream to showcase their moments of their lives and demonstrate their talents."
 		},
 		"placeholder": "USER ID",
 		"selectAmountOfRep": "1 SELECT THE AMOUNT OF REPLENISHMENT",
@@ -248,13 +248,25 @@
 		"contactUs": "contact us",
 		"reviews": "reviews",
 		"faq": "FAQ",
-		"rightsReserved": "All rights reserved."
+		"rightsReserved": "All rights reserved.",
+		"logo": "Logo",
+		"paymentIcon": "Payment icon"
 	},
 	"Components": {
 		"return": "Return",
 		"placeholder": "Find a service, or a game",
 		"send": "send",
 		"login": "Log in",
-		"loading": "Loading..."
+		"loading": "Loading...",
+		"logo": "Logo",
+		"languageFlag": "Language flag",
+		"vkIcon": "VK icon",
+		"googleIcon": "Google icon",
+		"profileIcon": "Profile icon",
+		"searchIcon": "Search icon"
+	},
+	"Search": {
+		"searchPlaceholder": "Search games",
+		"suggestedGames": "Suggested games"
 	}
 }

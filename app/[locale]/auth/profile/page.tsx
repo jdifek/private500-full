@@ -3,6 +3,7 @@ import $api from "@/app/http";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Profile = () => {
   const tAuth = useTranslations("Auth");
@@ -11,6 +12,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const localActive = useLocale();
+  const { setIsAuthenticated } = useAuth();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -41,6 +43,7 @@ const Profile = () => {
     // Remove tokens from localStorage
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    setIsAuthenticated(false);
 
     // Redirect to home page
     router.push("/");
@@ -50,6 +53,9 @@ const Profile = () => {
   };
   const handleHistory = () => {
     router.push(`/${localActive}/history/purchases`);
+  };
+  const handleTG = () => {
+    router.push(`https://t.me/DONVIPBIGObot`);
   };
 
   const buttons = [
@@ -96,6 +102,7 @@ const Profile = () => {
     },
     {
       title: tAuth("profileButtons.chatbot"),
+      click: handleTG,
       img: (
         <svg
           width="20"

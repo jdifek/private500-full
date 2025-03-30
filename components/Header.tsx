@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/contexts/AuthContext";
 import { Link } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
@@ -49,7 +49,7 @@ export const Header = () => {
   return (
     <header className="flex px-2 items-center py-2 justify-between">
       <Link href="/">
-        <Image src="/Logo.svg" width={130} height={70} alt="logo"></Image>
+        <Image src="/Logo.svg" width={130} height={70} alt={tComponents("logo")}></Image>
       </Link>
 
       <div className="flex items-center gap-2">
@@ -58,7 +58,7 @@ export const Header = () => {
             src={selectedLanguage.flag}
             width={25}
             height={25}
-            alt="logo"
+            alt={tComponents("languageFlag")}
             onClick={() => setIsOpen(!isOpen)}
             className="cursor-pointer"
           />
@@ -76,7 +76,7 @@ export const Header = () => {
                     src={lang.flag}
                     width={15}
                     height={15}
-                    alt={lang.name}
+                    alt={tComponents("languageFlag")}
                   />
                   <span className="text-[13px] text-black">{lang.name}</span>
                 </div>
@@ -95,7 +95,7 @@ export const Header = () => {
                     src="/VK.svg"
                     width={16}
                     height={16}
-                    alt="logo"
+                    alt={tComponents("vkIcon")}
                   ></Image>
                 </a>
                 <a
@@ -106,7 +106,7 @@ export const Header = () => {
                     src="/Google.svg"
                     width={16}
                     height={16}
-                    alt="logo"
+                    alt={tComponents("googleIcon")}
                   ></Image>
                 </a>
               </div>
@@ -116,7 +116,7 @@ export const Header = () => {
               src="/0067fd1434426fd9b509088b5518c42c 1.png"
               width={26}
               height={26}
-              alt="logo"
+              alt={tComponents("profileIcon")}
               onClick={handleNavigateProfile}
             ></Image>
           )}

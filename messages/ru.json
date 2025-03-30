@@ -202,10 +202,10 @@
 		"server": "Сервер",
 		"diamonds": "Диаманты",
 		"deliveryStatus": {
-			"delivered": "Successful delivery",
-			"inDelivery": "In delivery",
-			"failed": "The payment didn't go through",
-			"formalized": "Formalized"
+			"delivered": "Успешная доставка",
+			"inDelivery": "В процессе доставки",
+			"failed": "Оплата не прошла",
+			"formalized": "Оформлен"
 		}
 	},
 	"Order": {
@@ -248,13 +248,30 @@
 		"contactUs": "связаться с нами",
 		"reviews": "отзывы",
 		"faq": "FAQ",
-		"rightsReserved": "Все права защищены."
+		"rightsReserved": "Все права защищены.",
+		"logo": "Логотип",
+		"paymentIcon": "Иконка оплаты"
 	},
 	"Components": {
 		"return": "Вернуться",
 		"placeholder": "Найти сервис, либо игру",
 		"send": "отправить",
 		"login": "Войти",
-		"loading": "Загрузка..."
+		"loading": "Загрузка...",
+		"logo": "Логотип",
+		"languageFlag": "Флаг языка",
+		"vkIcon": "Иконка ВКонтакте",
+		"googleIcon": "Иконка Google",
+		"profileIcon": "Иконка профиля",
+		"searchIcon": "Иконка поиска"
+	},
+	"Navigation": {
+		"home": "Главная",
+		"search": "Поиск",
+		"profile": "Профиль"
+	},
+	"Search": {
+		"searchPlaceholder": "Поиск игр",
+		"suggestedGames": "Рекомендуемые игры"
 	}
 }

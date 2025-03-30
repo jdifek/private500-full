@@ -6,6 +6,9 @@ import { routing } from '@/i18n/routing'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { Header } from '@/components/Header'
 import Footer from '@/components/Footer'
+import BottomNavigation from '@/components/BottomNavigation'
+import { AuthProvider } from '@/contexts/AuthContext'
+import Script from 'next/script'
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -36,15 +39,29 @@ export default async function RootLayout({
 		notFound()
 	}
 
+	let messages
+	try {
+		messages = (await import(`../../messages/${locale}.json`)).default
+	} catch (error) {
+		notFound()
+	}
+
 	return (
 		<html lang={locale}>
+			<head>
+				<script src="//code.jivo.ru/widget/LzgQISOnC6" async></script>
+			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<NextIntlClientProvider>
-					<Header />
-					<div className='min-h-[60vh] px-3'>{children}</div>
-					<Footer />
+				<NextIntlClientProvider locale={locale} messages={messages}>
+					<AuthProvider>
+						<Header />
+						<div className='min-h-[60vh] px-3'>{children}</div>
+						<Footer />
+						<BottomNavigation />
+						<Script src="//code.jivo.ru/widget/LzgQISOnC6" strategy="afterInteractive" />
+					</AuthProvider>
 				</NextIntlClientProvider>
 			</body>
 		</html>
