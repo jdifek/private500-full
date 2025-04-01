@@ -20,10 +20,11 @@ const Order = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [selected, setSelected] = useState(20)
 	const [userId, setUserId] = useState('')
-	const [isConfirmed, setIsConfirmed] = useState(false)
+	const [isConfirmed, setIsConfirmed] = useState(true)
 	const [isPopupOpen, setIsPopupOpen] = useState(false)
 	const tOrder = useTranslations('Order')
 	const tHistory = useTranslations('History')
+	const tComponents = useTranslations('Components')
 
 	const togglePopup = () => {
 		setIsPopupOpen(!isPopupOpen)
@@ -45,27 +46,28 @@ const Order = () => {
 			{/* Кнопка "Информация о товаре" */}
 			<div className='w-full mt-5'>
 				<motion.div
-					className='w-full bg-blue-600 text-white px-4 pt-3 pb-1 rounded-lg flex flex-col items-center text-center'
+					className='w-full bg-blue-600 text-white px-4 pt-3 pb-2 rounded-lg flex flex-col items-center text-center'
 					onClick={() => setIsOpen(!isOpen)}
 					initial={{ borderRadius: 12 }}
 					whileHover={{ scale: 1.05 }}
 				>
-					<div className='w-full flex justify-between items-center cursor-pointer'>
-						<span className='w-full text-center'>
+					<div className='w-full flex justify-center items-center gap-1 cursor-pointer'>
+						<span className='roboto-condensed min-w-[146px] w-fit text-center text-[16px] leading-5'>
 							{tOrder('productInformation.title')}
 						</span>
-						<motion.span
+						<motion.img
 							animate={{ rotate: isOpen ? 180 : 0 }}
 							transition={{ duration: 0.3 }}
-						>
-							▼
-						</motion.span>
+							src='/arrow-down.svg'
+							alt='arrow down'
+							className='w-4 h-4'
+						></motion.img>
 					</div>
 					<motion.div
 						initial={{ height: 0, opacity: 0 }}
 						animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
 						transition={{ duration: 0.3, ease: 'easeInOut' }}
-						className='overflow-hidden w-full text-center mt-2'
+						className='overflow-hidden w-full roboto-condensed text-[15px] leading-5 text-center mt-2'
 					>
 						{tOrder('productInformation.label')}
 					</motion.div>
@@ -74,62 +76,50 @@ const Order = () => {
 
 			{/* Выбор суммы пополнения */}
 			<div className='mt-6'>
-				<h2 className='text-lg font-semibold mb-3'>
+				<h3 className='text-[16px] font-medium leading-2.5 mb-2'>
 					{tOrder('selectAmountOfRep')}
-				</h2>
+				</h3>
 				<div className='grid grid-cols-2 gap-2'>
 					{diamonds.map(item => (
 						<button
 							key={item.amount}
-							className='p-3 rounded-lg text-center relative'
+							className='p-3 flex flex-col rounded-xl relative h-[104px] shadow-md'
 							onClick={() => setSelected(item.amount)}
 						>
 							<div
-								className={`absolute inset-0 rounded-lg ${
-									selected === item.amount ? 'bg-[#f1f1f1]' : 'bg-[#f1f1f1]'
+								className={`absolute inset-0 rounded-xl ${
+									selected === item.amount ? 'bg-[#eeeff3]' : 'bg-[#eeeff3]'
 								}`}
 							></div>
 
 							{selected === item.amount && (
 								<div className='absolute top-0 right-0 w-8 h-8'>
-									<div className='absolute top-0 right-0 w-0 h-0 border-t-[32px] border-t-[#00d057] border-l-[32px] border-l-transparent'></div>
-									<svg
-										className='absolute top-0 right-0 w-4 h-4 mt-1 mr-1'
-										viewBox='0 0 24 24'
-										fill='none'
-										xmlns='http://www.w3.org/2000/svg'
-									>
-										<path
-											d='M5 12L10 17L20 7'
-											stroke='white'
-											strokeWidth='3'
-											strokeLinecap='round'
-											strokeLinejoin='round'
-										/>
-									</svg>
+									<div className='absolute top-0 right-0 w-0 h-0 border-t-[44px] border-t-[#00d057] border-l-[58px] border-l-transparent rounded-tr-xl'></div>
+									<Image
+										src='/check.svg'
+										alt='icon check'
+										width={13}
+										height={13}
+										className='relative top-1 left-3'
+									/>
 								</div>
 							)}
 
-							<div className='relative z-10 flex flex-col items-center'>
-								<span className='font-bold text-black'>
+							<div className='relative z-10 flex flex-col items-start gap-5'>
+								<span className='font-semibold text-[16px] leading-2.5 text-[#212529]'>
 									{item.price} {tOrder('rub')}
 								</span>
-								<span className='text-sm text-black'>
+								<span className='text-[14px] font-light leading-2.5 text-[#212529]'>
 									{item.amount} {tHistory('diamonds')}
 								</span>
 								{item.amount === 20 && (
-									<div className='mt-1'>
+									<div className='ml-auto'>
 										<Image
-											src='/diamond-icon.svg'
+											src='/diamonds.png'
 											width={24}
 											height={24}
 											alt='diamonds'
 											className='w-6 h-6'
-											onError={e => {
-												e.target.onerror = null
-												e.target.src =
-													"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%230091ff' d='M12 2L2 12l10 10 10-10L12 2zm0 2.83L19.17 12 12 19.17 4.83 12 12 4.83z'/%3E%3C/svg%3E"
-											}}
 										/>
 									</div>
 								)}
@@ -141,11 +131,10 @@ const Order = () => {
 
 			{/* Ввод Bigo Live ID */}
 			<div className='mt-6'>
-				<div className='flex mb-3 items-center justify-between relative'>
-					<p className='font-bold text-[16px] leading-[62%] text-[#212529]'>
+				<div className='flex gap-2 mb-2 items-center relative'>
+					<p className='font-medium text-[16px] leading-2.5 text-[#212529]'>
 						{tOrder('enterId')}
 					</p>
-
 					<Image
 						src={'/question-mark-in-circular-shape-svgrepo-com 1.svg'}
 						alt='question'
@@ -153,30 +142,25 @@ const Order = () => {
 						height={25}
 						onClick={togglePopup}
 					/>
-
 					{isPopupOpen && (
-						<div className='absolute top-8 right-0 z-10 bg-[#383838] text-white p-4 rounded-lg shadow-lg w-full'>
-							<div className='flex justify-between items-center mb-2'>
-								<svg
-									width='24'
-									height='24'
-									viewBox='0 0 24 24'
-									fill='none'
-									xmlns='http://www.w3.org/2000/svg'
-								>
-									<path
-										fillRule='evenodd'
-										clipRule='evenodd'
-										d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13.8279 6.5C13.8279 7.32843 13.1563 8 12.3279 8C11.4994 8 10.8279 7.32843 10.8279 6.5C10.8279 5.67157 11.4994 5 12.3279 5C13.1563 5 13.8279 5.67157 13.8279 6.5ZM9.479 11H11.1227L10.1053 16.0928C9.91311 17.117 10.3905 18.1506 11.2948 18.6684C12.1658 19.167 13.2529 19.0834 14.0374 18.4574L14.0787 18.4244C14.5521 18.0467 14.874 17.5114 14.9857 16.9162L15.2415 15.5532H13.2066L13.02 16.5473C12.9968 16.6711 12.9298 16.7825 12.8313 16.8611L12.7899 16.8941C12.6465 17.0086 12.4477 17.0239 12.2885 16.9327C12.1231 16.838 12.0359 16.649 12.071 16.4618L13.3107 10.1845C13.3656 9.89206 13.2874 9.5904 13.0974 9.36144C12.9074 9.13248 12.6254 9 12.3279 9H9.979L9.479 11Z'
-										fill='white'
-										fillOpacity='0.8'
-									/>
-								</svg>
+						<div className='absolute top-8 right-0 z-10 bg-[#383838] text-white px-5 pb-5 pt-3 rounded-xl shadow-lg w-full'>
+							<div className='flex justify-between items-center mb-3'>
+								<Image
+									src='/icon-info-circle.svg'
+									alt='icon info'
+									width={24}
+									height={24}
+								/>
 								<button onClick={togglePopup} className='text-white'>
-									✕
+									<Image
+										src='/icon-close.svg'
+										alt='icon close'
+										width={16}
+										height={16}
+									/>
 								</button>
 							</div>
-							<p className='text-sm'>{tOrder('howEnterId')}</p>
+							<p className='text-[16px] leading-5'>{tOrder('howEnterId')}</p>
 						</div>
 					)}
 				</div>
@@ -184,34 +168,35 @@ const Order = () => {
 				<input
 					type='text'
 					placeholder={tOrder('placeholder')}
-					className='border-0 rounded-[12px] p-[8px] w-full h-[40px] bg-[#f3f4f7] transition-all'
+					className='border-0 rounded-xl p-2 w-full h-10 bg-[#f3f4f7] transition-all placeholder:text-[13px] placeholder:font-light placeholder:leading-5'
 					value={userId}
 					onChange={e => setUserId(e.target.value)}
 				/>
-				<div className='flex items-center mt-2'>
+				<div className={`flex items-center mt-2 p-2 rounded-lg `}>
 					<input
 						type='checkbox'
 						id='confirm'
-						className='mr-2'
+						className={`mr-2 ${
+							userId ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
+						}`}
 						checked={isConfirmed}
-						onChange={() => setIsConfirmed(!isConfirmed)}
+						onChange={() => userId && setIsConfirmed(!isConfirmed)} // Активен только если есть userId
+						disabled={!userId}
 					/>
 					<label
 						htmlFor='confirm'
-						className='font-light text-[11px] leading-[191%] text-black uppercase'
+						className={`font-light text-[11px] leading-5 text-black uppercase `}
 					>
 						{tOrder('confirming')}
 					</label>
 				</div>
 			</div>
 
-			<div className='mt-2 mb-5'>
-				<h3 className='font-bold text-[15px] leading-[133%] text-[#212529] capitalize'>
-					{tOrder('whereToFindId.title')}{' '}
-					<span className='lowercase'>bigo live</span>{' '}
-					<span className='uppercase'>ID</span>?
+			<div className='mt-3 mb-5'>
+				<h3 className='font-medium text-[15px] leading-5 roboto-condensed text-[#212529] capitalize mb-2.5'>
+					{tOrder('whereToFindId.title')}
 				</h3>
-				<ul className='mb-2 font-normal text-[15px] leading-[147%] text-[#212529]'>
+				<ul className='mb-2 font-normal roboto-condensed text-[15px] leading-5 text-[#212529]'>
 					<li>{tOrder('whereToFindId.item1')}</li>
 					<li>{tOrder('whereToFindId.item2')}</li>
 					<li>{tOrder('whereToFindId.item3')}</li>
@@ -226,8 +211,8 @@ const Order = () => {
 				></Image>
 			</div>
 
-			<div className='mb-6'>
-				<p className='font-bold text-[16px] leading-[62%] text-[#212529] mb-3'>
+			<div className='mt-6'>
+				<p className='font-medium text-[16px] leading-2.5 text-[#212529] mb-2.5'>
 					{tOrder('selectPayment')}
 				</p>
 
@@ -239,11 +224,24 @@ const Order = () => {
 							height={30}
 							alt='logo'
 						></Image>
-						<p className='font-semibold text-[13px] leading-[162%] text-[#212529] capitalize'>
+						<p className='font-medium text-[13px] leading-5 text-[#212529] capitalize'>
 							T-bank (SBP)
 						</p>
 					</div>
 				</div>
+			</div>
+
+			<div className='fixed bottom-32 left-0 right-4 flex justify-end z-10'>
+				<button
+					className={`px-3 py-4 rounded-3xl text-white font-semibold text-[14px] leading-4 transition-all ${
+						userId && isConfirmed
+							? 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+							: 'bg-gray-400 cursor-not-allowed'
+					}`}
+					disabled={!userId || !isConfirmed}
+				>
+					{tComponents('buyNow')}
+				</button>
 			</div>
 		</>
 	)

@@ -114,7 +114,7 @@
 			"aboutUs": "We are an authorized seller of Bigo Live diamonds. Bigo Live and this website are operated by separate independent companies and are not responsible for each other's business or services."
 		},
 		"contact": {
-			"title": "CONTACT US",
+			"title": "Contact us",
 			"forCooperationEmail": "For cooperation email",
 			"address": {
 				"title": "Address",
@@ -220,7 +220,7 @@
 		"howEnterId": "How to properly enter your ID and server number is in your personal profile. These data can usually be found in the «Settings» or «Profile Information».",
 		"confirming": "I CONFIRM THAT THE DATA HAS BEEN ENTERED CORRECTLY",
 		"whereToFindId": {
-			"title": "Where to find",
+			"title": "Where to find Bigo Live ID?",
 			"item1": "1. Log in to the Bigo Live app",
 			"item2": "2. Go to the I page",
 			"item3": "3. The Bigo Live ID will be displayed under your nickname",
@@ -255,7 +255,7 @@
 	"Components": {
 		"return": "Return",
 		"placeholder": "Find a service, or a game",
-		"send": "send",
+		"send": "Send",
 		"login": "Log in",
 		"loading": "Loading...",
 		"logo": "Logo",
@@ -263,7 +263,8 @@
 		"vkIcon": "VK icon",
 		"googleIcon": "Google icon",
 		"profileIcon": "Profile icon",
-		"searchIcon": "Search icon"
+		"searchIcon": "Search icon",
+		"buy": "Buy now"
 	},
 	"Search": {
 		"searchPlaceholder": "Search games",
