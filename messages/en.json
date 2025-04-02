@@ -198,8 +198,8 @@
 		"shopping": "Shopping",
 		"notShopping": "You haven't shopped yet",
 		"buying": "Buying",
-		"player": "Player",
-		"server": "Server",
+		"player": "Player ID",
+		"server": "Server ID",
 		"diamonds": "Diamonds",
 		"deliveryStatus": {
 			"delivered": "Successful delivery",
@@ -267,7 +267,8 @@
 		"buy": "Buy now"
 	},
 	"Search": {
-		"searchPlaceholder": "Search games",
-		"suggestedGames": "Suggested games"
+		"searchPlaceholder": "Find a service or a game",
+		"suggestedGames": "Suggested games",
+		"noGamesFound": "Nothing found matching your request"
 	}
 }

@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 const RegisterSuccess = () => {
 	const tAuth = useTranslations('Auth')
 	const searchParams = useSearchParams()
-	const email = searchParams.get('email') || 'mail@gmail.com'
+	const email = searchParams.get('identifier') || 'mail@gmail.com'
 
 	return (
 		<div className='rounded-[12px] px-[20px] pt-4 py-[108px] w-full flex-col items-center flex mb-3 justify-center mt-9 h-[443px] bg-[#f3f4f7]'>

@@ -1,20 +1,24 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
-import SearchInput from '@/components/SearchInput';
-import SuggestedGames from '@/components/SuggestedGames';
-import BottomNavigation from '@/components/BottomNavigation';
+import SearchInput from '@/components/SearchInput'
+import SuggestedGames from '@/components/SuggestedGames'
+import BottomNavigation from '@/components/BottomNavigation'
+import { useState } from 'react'
 
 export default function SearchPage() {
-  const t = useTranslations('Search');
+	const [searchTerm, setSearchTerm] = useState<string>('')
 
-  return (
-    <div className="min-h-screen bg-[#F7F7F7]">
-      <div className="pt-10 pb-20">
-        <SearchInput />
-        <SuggestedGames />
-      </div>
-      <BottomNavigation />
-    </div>
-  );
-} 
+	const handleSearchChange = (value: string) => {
+		setSearchTerm(value)
+	}
+
+	return (
+		<div className='min-h-screen'>
+			<div className='pt-10 pb-20'>
+				<SearchInput onSearchChange={handleSearchChange} />
+				<SuggestedGames searchTerm={searchTerm} />
+			</div>
+			<BottomNavigation />
+		</div>
+	)
+}

@@ -3,8 +3,8 @@ import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
 	images: {
-    domains: ["i.postimg.cc"], // Добавляем разрешенный домен
-  },
+		domains: ['i.postimg.cc', 'alamocitygolftrail.com'], // Добавляем разрешенный домен
+	},
 }
 
 const withNextIntl = createNextIntlPlugin()

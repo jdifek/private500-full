@@ -8,17 +8,22 @@ const No = () => {
 	return (
 		<>
 			<div className='flex flex-col gap-7  mt-7 mb-3 '>
-				<p className='font-normal text-[15px] leading-[87%] text-[#14229e]'>
+				<p className='font-normal text-[15px] leading-3.5 text-[#14229e] cursor-pointer hover:underline'>
 					{tComponents('return')}
 				</p>
 			</div>
-			<div className=' -mx-3 py-10 w-[100vw] flex-col items-center flex justify-center   bg-[#f3f4f7]'>
-				<Image src='/Sad diamond.svg' height={70} width={70} alt='pic'></Image>
+			<div className=' -mx-3 py-10 w-[100vw] flex-col items-center flex justify-center gap-2 bg-[#f3f4f7]'>
+				<Image
+					src='/feedback-diamond.png'
+					height={70}
+					width={70}
+					alt='pic'
+				></Image>
 
-				<p className='text-center text-[14px] font-normal leading-[93%] text-black mb-3 mt-5'>
+				<p className='text-center text-[13px] font-normal leading-2.5 text-black'>
 					{tReview('thanksForFeedback')}
 				</p>
-				<p className=' font-light text-[11px] leading-[127%] text-[#383838] text-center'>
+				<p className=' font-light text-[11px] leading-3.5 text-[#383838] text-center'>
 					{tReview('wePostingSoon')}{' '}
 				</p>
 			</div>

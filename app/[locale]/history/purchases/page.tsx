@@ -1,5 +1,6 @@
 'use client'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 import { useState } from 'react'
 
 const purchasesData = [
@@ -8,7 +9,7 @@ const purchasesData = [
 		date: '21.03.2025, 14:20',
 		price: 92.78,
 		status: 'delivered',
-		items: [{ img: '/icons/item1.png' }, { img: '/icons/currency.png' }],
+		items: [{ img: '/Promition banndser.png' }, { img: '/diamonds.png' }],
 		userId: '73991789',
 		serverId: '63465',
 		diamonds: 50,
@@ -18,7 +19,7 @@ const purchasesData = [
 		date: '21.03.2025, 14:18',
 		price: 3711.16,
 		status: 'in_delivery',
-		items: [{ img: '/icons/item2.png' }, { img: '/icons/currency.png' }],
+		items: [{ img: '/Promition banndser.png' }, { img: '/diamonds.png' }],
 		userId: '512311',
 		serverId: '71873',
 		diamonds: 2000,
@@ -28,7 +29,7 @@ const purchasesData = [
 		date: '21.03.2025, 12:30',
 		price: 185.56,
 		status: 'failed',
-		items: [{ img: '/icons/item3.png' }, { img: '/icons/currency.png' }],
+		items: [{ img: '/Promition banndser.png' }, { img: '/diamonds.png' }],
 		userId: '6167823',
 		serverId: '4241',
 		diamonds: 100,
@@ -46,25 +47,29 @@ const Purchases = () => {
 				return {
 					text: tHistory('deliveryStatus.delivered'),
 					color: 'green',
-					icon: '✅',
+					icon: '/green-successfully.svg',
+					smIcon: '/small-green-successfully.svg',
 				}
 			case 'in_delivery':
 				return {
 					text: tHistory('deliveryStatus.inDelivery'),
 					color: 'blue',
-					icon: '🚚',
+					icon: '/pending.svg',
+					smIcon: '/small-pending.svg',
 				}
 			case 'failed':
 				return {
 					text: tHistory('deliveryStatus.failed'),
 					color: 'red',
-					icon: '❌',
+					icon: '/icon-error.svg',
+					smIcon: '/small-icon-error.svg',
 				}
 			default:
 				return {
 					text: tHistory('deliveryStatus.formalized'),
 					color: 'gray',
-					icon: '🛒',
+					icon: '/pending.svg',
+					smIcon: '/small-pending.svg',
 				}
 		}
 	}
@@ -72,87 +77,112 @@ const Purchases = () => {
 	return (
 		<div className='p-4'>
 			<div className='flex flex-col gap-3  mt-7 mb-3'>
-				<p className='font-normal text-[15px] leading-[87%] text-[#14229e]'>
+				<p className='font-normal text-[15px] leading-3.5 text-[#14229e] cursor-pointer hover:underline'>
 					{tComponents('return')}
 				</p>
-				<div className='flex gap-1 items-center mb-3'>
-					<svg
-						width='20'
-						height='20'
-						viewBox='0 0 20 20'
-						fill='none'
-						xmlns='http://www.w3.org/2000/svg'
-					>
-						<rect width='20' height='20' rx='4' fill='#F03D00' />
-						<path
-							d='M15.3333 5.33325H4V6.88881H15.3333V5.33325Z'
-							fill='white'
-						/>
-						<path
-							fillRule='evenodd'
-							clipRule='evenodd'
-							d='M4.70801 13.1109C4.70801 13.9704 5.34267 14.6665 6.12467 14.6665H13.208C13.9907 14.6665 14.6247 13.9704 14.6247 13.1109V7.6665H4.70801V13.1109ZM8.23551 9.19017H11.1269V10.0488H8.23551V9.19017Z'
-							fill='white'
-						/>
-					</svg>
-					<p className='font-bold text-[14px] leading-[93%] text-center text-[#000]'>
+				<div className='flex gap-1 items-center mb-2'>
+					<Image src='/icon-box.svg' alt='icon box' width={20} height={20} />
+					<h2 className='font-medium text-[16px] leading-2.5 text-[#212529] ml-2 lowercase'>
 						{tHistory('shopping')}
-					</p>
+					</h2>
 				</div>
 			</div>
-			{purchasesData.map(purchase => {
-				const isOpen = selectedId === purchase.id
-				const statusInfo = getStatusInfo(purchase.status)
 
-				return (
-					<div
-						key={purchase.id}
-						className='mb-4 border p-4 rounded-lg bg-gray-100'
-					>
-						<div
-							className='flex justify-between items-center cursor-pointer'
-							onClick={() => setSelectedId(isOpen ? null : purchase.id)}
+			<ul className='flex flex-col gap-2'>
+				{purchasesData.map(purchase => {
+					const isOpen = selectedId === purchase.id
+					const statusInfo = getStatusInfo(purchase.status)
+
+					return (
+						<li
+							key={purchase.id}
+							className='border-[0.1px] border-gray-200 p-2 rounded-lg bg-[#f3f4f7] flex flex-col justify-between transition-all duration-300'
 						>
-							<div className='flex gap-2'>
-								{purchase.items.map((item, index) => (
-									<img
-										key={index}
-										src={item.img}
-										alt='item'
-										className='w-6 h-6'
-									/>
-								))}
-								<p className='text-blue-600 underline'>
-									{tHistory('buying')} #{purchase.id}
+							<div
+								className='flex gap-2 justify-between items-center cursor-pointer'
+								onClick={() => setSelectedId(isOpen ? null : purchase.id)}
+							>
+								<div className='flex gap-2'>
+									<p className='text-blue-600 text-[13px] leading-2.5 underline'>
+										{tHistory('buying')} #{purchase.id}
+									</p>
+									<span className='text-[#383838] text-[11px] leading-2.5'>
+										{purchase.date}
+									</span>
+								</div>
+								<Image
+									src={statusInfo.icon}
+									alt='status icon'
+									width={20}
+									height={20}
+								/>
+							</div>
+
+							{/* Выпадающая секция */}
+							<div className={`details ${isOpen ? 'expanded' : ''}`}>
+								<div className='mt-2 p-2 bg-inherit rounded-lg shadow-sm space-y-2'>
+									<div className='font-medium flex items-center gap-2'>
+										<Image
+											src={statusInfo.icon}
+											alt='status icon'
+											width={20}
+											height={20}
+										/>
+										<p className='text-[12px] leading-2.5'>{statusInfo.text}</p>
+									</div>
+
+									<p className='font-light text-[9px] leading-2.5'>
+										<span className='font-medium text-[12px] leading-2.5'>
+											{tHistory('player')}:
+										</span>{' '}
+										{purchase.userId}
+									</p>
+									<p className='font-light text-[9px] leading-2.5'>
+										<span className='font-medium text-[12px] leading-2.5'>
+											{tHistory('server')}:
+										</span>{' '}
+										{purchase.serverId}
+									</p>
+									<p className='font-light text-[9px] leading-2.5'>
+										<span className='font-medium text-[12px] leading-2.5'>
+											{tHistory('diamonds')}:
+										</span>{' '}
+										{purchase.diamonds}
+									</p>
+								</div>
+							</div>
+
+							<div className='flex justify-between items-center mt-2'>
+								<div className='flex gap-2'>
+									{purchase.items.map((item, index) => (
+										<div key={index} className='relative'>
+											<Image
+												src={item.img}
+												alt='item'
+												width={25}
+												height={20}
+												className='w-8 h-8 bg-[#e8e8e8] rounded-full flex items-center justify-center'
+											/>
+											{index === 1 && (
+												<Image
+													src={statusInfo.smIcon}
+													alt='status small icon'
+													width={16}
+													height={16}
+													className='absolute top-4 right-0'
+												/>
+											)}
+										</div>
+									))}
+								</div>
+								<p className='text-[16px] leading-2.5 font-medium'>
+									{purchase.price} ₽
 								</p>
 							</div>
-							<span className='text-gray-600'>{purchase.date}</span>
-						</div>
-
-						{isOpen && (
-							<div className='mt-2 p-2 bg-white rounded-lg shadow-sm'>
-								<p className={`text-${statusInfo.color}-600 font-medium`}>
-									{statusInfo.icon} {statusInfo.text}
-								</p>
-								<p>
-									<strong>{tHistory('player')} ID:</strong> {purchase.userId}
-								</p>
-								<p>
-									<strong>{tHistory('server')} ID:</strong> {purchase.serverId}
-								</p>
-								<p>
-									<strong>{tHistory('diamonds')}:</strong> {purchase.diamonds}
-								</p>
-							</div>
-						)}
-
-						<div className='flex justify-between items-center mt-2'>
-							<p className='text-lg font-bold'>{purchase.price} ₽</p>
-							<span>{statusInfo.icon}</span>
-						</div>
-					</div>
-				)
-			})}
+						</li>
+					)
+				})}
+			</ul>
 		</div>
 	)
 }

@@ -1,29 +1,42 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useState } from 'react'
 
-export default function SearchInput() {
-  const t = useTranslations('Search');
+interface SearchInputProps {
+	onSearchChange: (value: string) => void
+}
 
-  return (
-    <div className="px-4">
-      <div className="bg-[#1B34FF]/5 rounded-xl p-3 flex items-center gap-2">
-        <svg 
-          width="14" 
-          height="14" 
-          viewBox="0 0 14 14" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label={t('searchIcon')}
-        >
-          <path d="M13 13L9 9M10.5 5.5C10.5 8.26142 8.26142 10.5 5.5 10.5C2.73858 10.5 0.5 8.26142 0.5 5.5C0.5 2.73858 2.73858 0.5 5.5 0.5C8.26142 0.5 10.5 2.73858 10.5 5.5Z" stroke="#AAAAAB" strokeWidth="1.5"/>
-        </svg>
-        <input 
-          type="text"
-          placeholder={t('searchPlaceholder')}
-          className="w-full bg-transparent text-[#929293] placeholder-[#929293] focus:outline-none"
-        />
-      </div>
-    </div>
-  );
-} 
+export default function SearchInput({ onSearchChange }: SearchInputProps) {
+	const t = useTranslations('Search')
+	const [searchTerm, setSearchTerm] = useState<string>('')
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value
+		setSearchTerm(value)
+		if (typeof onSearchChange === 'function') {
+			onSearchChange(value)
+		}
+	}
+
+	return (
+		<div className='px-4'>
+			<div className='bg-[#1B34FF]/5 rounded-xl p-3 flex items-center gap-2'>
+				<Image
+					src='/icon-search.svg'
+					alt='icon search'
+					width={14}
+					height={14}
+				/>
+				<input
+					type='text'
+					placeholder={t('searchPlaceholder')}
+					value={searchTerm}
+					onChange={handleInputChange}
+					className='w-full bg-transparent text-[#929293] placeholder-[#929293] placeholder:text-[13px] placeholder:font-light placeholder:leading-5 focus:outline-none'
+				/>
+			</div>
+		</div>
+	)
+}

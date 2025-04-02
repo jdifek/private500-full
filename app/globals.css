@@ -40,3 +40,16 @@ body {
 	max-height: 200px;
 	opacity: 1;
 }
+
+/* history/purchases page */
+.details {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+	opacity: 0;
+}
+
+.details.expanded {
+	max-height: 200px;
+	opacity: 1;
+}

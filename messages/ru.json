@@ -198,8 +198,8 @@
 		"shopping": "Покупки",
 		"notShopping": "Вы еще не делали покупки",
 		"buying": "Покупка",
-		"player": "Игрок",
-		"server": "Сервер",
+		"player": "Игрок ID",
+		"server": "Сервер ID",
 		"diamonds": "Диаманты",
 		"deliveryStatus": {
 			"delivered": "Успешная доставка",
@@ -272,7 +272,8 @@
 		"profile": "Профиль"
 	},
 	"Search": {
-		"searchPlaceholder": "Поиск игр",
-		"suggestedGames": "Рекомендуемые игры"
+		"searchPlaceholder": "Найти сервис, либо игру",
+		"suggestedGames": "Рекомендуемые игры",
+		"noGamesFound": "По вашему запросу ничего не найдено"
 	}
 }
