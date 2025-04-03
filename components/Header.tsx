@@ -20,7 +20,7 @@ export const Header = () => {
 	const localActive = useLocale()
 	const pathname = usePathname()
 	const locale = pathname.split('/')[1] || 'ru' // Извлекаем локаль (по умолчанию "ru")
-	const { isAuthenticated } = useAuth()
+	const { isAuthenticated, user } = useAuth()
 
 	useEffect(() => {
 		const newLang =
@@ -119,13 +119,25 @@ export const Header = () => {
 							</div>
 						</>
 					) : (
-						<Image
-							src='/0067fd1434426fd9b509088b5518c42c 1.png'
-							width={26}
-							height={26}
-							alt={tComponents('profileIcon')}
-							onClick={handleNavigateProfile}
-						></Image>
+						<div className='relative' onClick={handleNavigateProfile}>
+							{user?.avatar ? (
+								<Image
+									src={user.avatar}
+									width={26}
+									height={26}
+									alt={tComponents('profileIcon')}
+									className='rounded-full object-cover cursor-pointer'
+								/>
+							) : (
+								<Image
+									src='/0067fd1434426fd9b509088b5518c42c 1.png'
+									width={26}
+									height={26}
+									alt={tComponents('profileIcon')}
+									className='cursor-pointer'
+								/>
+							)}
+						</div>
 					)}
 				</div>
 			</div>

@@ -55,11 +55,11 @@ export default function UsersTab({ users, setUsers, loading }: UsersTabProps) {
 		try {
 			const updates = editUsers[userId]
 			const response = await $api.patch(`/users/${userId}`, {
-				updatedUserData: updates,
+				updatedUserData: { ...updates, role: updates.role },
 			})
 			setUsers(
 				users.map(user =>
-					user.id === userId ? { ...user, ...response.data } : user
+					user.id === userId ? { ...user, ...response.data.user } : user
 				)
 			)
 		} catch (error) {

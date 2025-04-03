@@ -2,12 +2,7 @@ import { NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
 import prisma from '@/lib/prisma'
 
-const verifyTokenAndRole = (authHeader: string | null) => {
-	if (!authHeader || !authHeader.startsWith('Bearer ')) {
-		return { error: 'No token provided', status: 401 }
-	}
-
-	const token = authHeader.split(' ')[1]
+const verifyToken = (token: string) => {
 	try {
 		const decoded = jwt.verify(
 			token,
@@ -17,9 +12,6 @@ const verifyTokenAndRole = (authHeader: string | null) => {
 			email: string
 			role: string
 		}
-		if (decoded.role !== 'ADMIN') {
-			return { error: 'Forbidden: Admins only', status: 403 }
-		}
 		return { decoded }
 	} catch (error) {
 		return { error: 'Invalid or expired token', status: 401 }
@@ -28,10 +20,26 @@ const verifyTokenAndRole = (authHeader: string | null) => {
 
 export async function PATCH(
 	request: Request,
-	context: { params: Promise<{ id: string }> } // Исправляем тип params
+	context: { params: Promise<{ id: string }> }
 ) {
 	const authHeader = request.headers.get('authorization')
-	const tokenCheck = verifyTokenAndRole(authHeader)
+	const body = await request.json()
+	const { accessToken, updatedUserData } = body
+	const params = await context.params
+	const { id } = params
+
+	if (!id) {
+		return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 })
+	}
+
+	const token = authHeader?.startsWith('Bearer ')
+		? authHeader.split(' ')[1]
+		: accessToken
+	if (!token) {
+		return NextResponse.json({ error: 'No token provided' }, { status: 401 })
+	}
+
+	const tokenCheck = verifyToken(token)
 	if ('error' in tokenCheck) {
 		return NextResponse.json(
 			{ error: tokenCheck.error },
@@ -39,19 +47,14 @@ export async function PATCH(
 		)
 	}
 
-	const params = await context.params // Асинхронно получаем params
-	const { id } = params
-	if (!id) {
-		return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 })
-	}
+	const { decoded } = tokenCheck
 
-	const body = await request.json()
-	const updatedUserData = body.updatedUserData
 	if (!updatedUserData) {
 		return NextResponse.json({ error: 'No data to update' }, { status: 400 })
 	}
 
 	const updateData: { [key: string]: any } = {}
+
 	if ('name' in updatedUserData) updateData.name = updatedUserData.name
 	if ('secondName' in updatedUserData)
 		updateData.secondName = updatedUserData.secondName
@@ -60,7 +63,19 @@ export async function PATCH(
 	if ('email' in updatedUserData) updateData.email = updatedUserData.email
 	if ('avatar' in updatedUserData) updateData.avatar = updatedUserData.avatar
 	if ('sex' in updatedUserData) updateData.sex = updatedUserData.sex
-	if ('role' in updatedUserData) updateData.role = updatedUserData.role
+	if ('birthDate' in updatedUserData)
+		updateData.birthDate = updatedUserData.birthDate
+
+	// Обрабатываем изменение роли, если пользователь — админ
+	if ('role' in updatedUserData) {
+		if (decoded.role !== 'ADMIN') {
+			return NextResponse.json(
+				{ error: 'Forbidden: Only admins can update roles' },
+				{ status: 403 }
+			)
+		}
+		updateData.role = updatedUserData.role
+	}
 
 	if (Object.keys(updateData).length === 0) {
 		return NextResponse.json(
@@ -74,7 +89,8 @@ export async function PATCH(
 			where: { id },
 			data: updateData,
 		})
-		return NextResponse.json(user, { status: 200 })
+
+		return NextResponse.json({ user }, { status: 200 })
 	} catch (error) {
 		console.error('Error updating user:', error)
 		return NextResponse.json(
@@ -86,10 +102,18 @@ export async function PATCH(
 
 export async function DELETE(
 	request: Request,
-	context: { params: Promise<{ id: string }> } // Исправляем тип params
+	context: { params: Promise<{ id: string }> }
 ) {
 	const authHeader = request.headers.get('authorization')
-	const tokenCheck = verifyTokenAndRole(authHeader)
+	const params = await context.params
+	const { id } = params
+
+	if (!authHeader || !authHeader.startsWith('Bearer ')) {
+		return NextResponse.json({ error: 'No token provided' }, { status: 401 })
+	}
+
+	const token = authHeader.split(' ')[1]
+	const tokenCheck = verifyToken(token)
 	if ('error' in tokenCheck) {
 		return NextResponse.json(
 			{ error: tokenCheck.error },
@@ -97,20 +121,22 @@ export async function DELETE(
 		)
 	}
 
-	const params = await context.params // Асинхронно получаем params
-	const { id } = params
+	const { decoded } = tokenCheck
+	if (decoded.role !== 'ADMIN') {
+		return NextResponse.json(
+			{ error: 'Forbidden: Admins only' },
+			{ status: 403 }
+		)
+	}
+
 	if (!id) {
 		return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 })
 	}
 
 	try {
-		const user = await prisma.user.delete({
+		await prisma.user.delete({
 			where: { id },
 		})
-
-		if (!user) {
-			return NextResponse.json({ error: 'User not found' }, { status: 404 })
-		}
 		return NextResponse.json({ message: 'User deleted' }, { status: 200 })
 	} catch (error) {
 		console.error('Error deleting user:', error)
@@ -120,10 +146,18 @@ export async function DELETE(
 
 export async function GET(
 	request: Request,
-	context: { params: Promise<{ id: string }> } // Исправляем тип params
+	context: { params: Promise<{ id: string }> }
 ) {
 	const authHeader = request.headers.get('authorization')
-	const tokenCheck = verifyTokenAndRole(authHeader)
+	const params = await context.params
+	const { id } = params
+
+	if (!authHeader || !authHeader.startsWith('Bearer ')) {
+		return NextResponse.json({ error: 'No token provided' }, { status: 401 })
+	}
+
+	const token = authHeader.split(' ')[1]
+	const tokenCheck = verifyToken(token)
 	if ('error' in tokenCheck) {
 		return NextResponse.json(
 			{ error: tokenCheck.error },
@@ -131,8 +165,14 @@ export async function GET(
 		)
 	}
 
-	const params = await context.params // Асинхронно получаем params
-	const { id } = params
+	const { decoded } = tokenCheck
+	if (decoded.role !== 'ADMIN') {
+		return NextResponse.json(
+			{ error: 'Forbidden: Admins only' },
+			{ status: 403 }
+		)
+	}
+
 	if (!id) {
 		return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 })
 	}

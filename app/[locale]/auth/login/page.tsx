@@ -22,7 +22,7 @@ const Login = () => {
 	const router = useRouter()
 	const pathname = usePathname()
 	const locale = pathname.split('/')[1] || 'ru'
-	const { setIsAuthenticated } = useAuth()
+	const { setIsAuthenticated, setUser } = useAuth()
 
 	// Регулярные выражения для проверки identifier и телефона
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -59,6 +59,9 @@ const Login = () => {
 			const { accessToken, refreshToken, role } = response.data
 			setTokens(accessToken, refreshToken)
 			setIsAuthenticated(true)
+
+			const userResponse = await $api.post('/auth/me', { accessToken })
+			setUser(userResponse.data.user)
 
 			// Перенаправляем в зависимости от роли
 			if (role === 'ADMIN') {

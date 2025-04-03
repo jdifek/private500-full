@@ -9,6 +9,7 @@ import Footer from '@/components/Footer'
 import BottomNavigation from '@/components/BottomNavigation'
 import { AuthProvider } from '@/contexts/AuthContext'
 import Script from 'next/script'
+import { Toaster } from 'react-hot-toast'
 
 const roboto = Roboto({
 	variable: '--font-roboto',
@@ -61,6 +62,7 @@ export default async function RootLayout({
 					<AuthProvider>
 						<Header />
 						<div className='min-h-[60vh] py-6 px-3'>{children}</div>
+						<Toaster position='top-right' />
 						<Footer />
 						<BottomNavigation />
 						<Script

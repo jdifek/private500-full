@@ -6,13 +6,15 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model User {
   id              String   @id @default(uuid())
   name            String?
   secondName      String?
+  birthDate       String?
   sex             Sex      @default(MALE)
   phoneNumber     String?  @unique // Добавляем @unique
-  email           String?   @unique
+  email           String?  @unique
   password        String
   avatar          String?
   accessToken     String?  @unique

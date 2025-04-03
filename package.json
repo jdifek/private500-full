@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
+    "@supabase/supabase-js": "^2.49.4",
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
     "framer-motion": "^12.5.0",
@@ -19,7 +20,9 @@
     "next-intl": "^4.0.2",
     "nodemailer": "^6.10.0",
     "react": "^19.0.0",
+    "react-datepicker": "^8.2.1",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
     "swiper": "^11.2.6",
     "twilio": "^5.5.1",
     "uuid": "^11.1.0"

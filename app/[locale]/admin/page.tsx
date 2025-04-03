@@ -53,7 +53,7 @@ export default function AdminDashboard() {
 					{['users', 'products', 'reviews'].map(tab => (
 						<button
 							key={tab}
-							className={`px-4 py-2 ${
+							className={`px-4 py-2 cursor-pointer ${
 								activeTab === tab
 									? 'border-b-2 border-blue-500 text-blue-600'
 									: ''
