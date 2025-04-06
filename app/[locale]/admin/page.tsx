@@ -15,15 +15,15 @@ export default function AdminDashboard() {
 	const [users, setUsers] = useState<User[]>([])
 	const [products, setProducts] = useState<Products[]>([])
 	const [reviews, setReviews] = useState<Review[]>([])
-	const [loading, setLoading] = useState({
-		users: true,
-		products: true,
-		reviews: true,
+  const [loading, setLoading] = useState({
+    users: true,
+    products: true,
+    reviews: true,
 	})
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
 				const usersResponse = await $api.get('/users')
 				setUsers(usersResponse.data)
 				setLoading(prev => ({ ...prev, users: false }))
@@ -35,7 +35,7 @@ export default function AdminDashboard() {
 				const reviewsResponse = await $api.get('/reviews')
 				setReviews(reviewsResponse.data)
 				setLoading(prev => ({ ...prev, reviews: false }))
-			} catch (error) {
+      } catch (error) {
 				console.error('Failed to fetch data:', error)
 				setLoading({ users: false, products: false, reviews: false })
 			}
@@ -43,29 +43,29 @@ export default function AdminDashboard() {
 		fetchData()
 	}, [])
 
-	return (
-		<ProtectedRoute requireAdmin>
+  return (
+    <ProtectedRoute requireAdmin>
 			<div className='p-6 max-w-7xl mx-auto'>
 				<h1 className='text-3xl font-bold mb-6'>Admin Dashboard</h1>
 
-				{/* Tabs */}
+        {/* Tabs */}
 				<div className='flex mb-6 border-b'>
 					{['users', 'products', 'reviews'].map(tab => (
-						<button
-							key={tab}
+            <button
+              key={tab}
 							className={`px-4 py-2 cursor-pointer ${
-								activeTab === tab
+                activeTab === tab
 									? 'border-b-2 border-blue-500 text-blue-600'
 									: ''
-							}`}
-							onClick={() =>
+              }`}
+              onClick={() =>
 								setActiveTab(tab as 'users' | 'products' | 'reviews')
-							}
-						>
-							{tab.charAt(0).toUpperCase() + tab.slice(1)}
-						</button>
-					))}
-				</div>
+              }
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
 
 				{/* Tab Content */}
 				{activeTab === 'users' && (
@@ -86,9 +86,9 @@ export default function AdminDashboard() {
 						products={products}
 						loading={loading.reviews}
 					/>
-				)}
-			</div>
-		</ProtectedRoute>
+        )}
+      </div>
+    </ProtectedRoute>
 	)
 }
 

@@ -13,7 +13,7 @@ model User {
   secondName      String?
   birthDate       String?
   sex             Sex      @default(MALE)
-  phoneNumber     String?  @unique // Добавляем @unique
+  phoneNumber     String?  @unique
   email           String?  @unique
   password        String
   avatar          String?
@@ -25,23 +25,26 @@ model User {
 }
 
 model Products {
-  id          String      @id @default(uuid())
-  type        TypeProduct
-  image       String
-  description String
+  id          String   @id @default(uuid())
   name        String
-  Review      Review[]
+  description String?
+  price       Float?
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  reviews     Review[] @relation("ProductReviews")
 }
 
 model Review {
-  id          String @id @default(uuid()) // ID отзыва
-  userId      String // ID пользователя (внешний ключ)
-  productId   String
-  description String // Текст отзыва
-  status      Status @default(LIKE)
-
-  product Products @relation(fields: [productId], references: [id])
-  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Products @relation("ProductReviews", fields: [productId], references: [id], onDelete: Cascade)
+  rating    Int?
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 enum Role {
