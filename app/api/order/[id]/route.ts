@@ -124,10 +124,12 @@ RfFkXlmQnQJsAZ48wuQGo1/YgnXS32RrLiPYH6eXuiS6+PvjgsL9BvQ43WZk2+mL
 		}
 
 		const status = bigoResponse.rescode === '0' ? 'completed' : 'failed'
+		const bigoMessage =
+			bigoResponse.msg || bigoResponse.message || 'Unknown response'
 		return NextResponse.json(
 			{
 				status,
-				message: `Request sent to Bigo Live: ${bigoResponse.message}`,
+				message: `Request sent to Bigo Live: ${bigoMessage}`,
 				paymentMessage: paymentResult.message,
 				data: postData,
 				bigoResponse,

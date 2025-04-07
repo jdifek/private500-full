@@ -25,6 +25,8 @@ export default function Order({ params }: { params: { id: string } }) {
 	const [userId, setUserId] = useState('')
 	const [isConfirmed, setIsConfirmed] = useState<boolean>(true)
 	const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false)
+	const [isPaymentOpen, setIsPaymentOpen] = useState<boolean>(false)
+	const [selectedPayment, setSelectedPayment] = useState('T-bank (SBP)')
 	const [loading, setLoading] = useState<boolean>(false)
 	const tOrder = useTranslations('Order')
 	const tHistory = useTranslations('History')
@@ -251,21 +253,50 @@ export default function Order({ params }: { params: { id: string } }) {
 			</div>
 
 			<div className='mt-6'>
-				<p className='font-medium text-[16px] leading-2.5 text-[#212529] mb-2.5'>
+				<label className='block font-medium text-[16px] leading-2.5 text-[#212529] mb-2.5'>
 					{tOrder('selectPayment')}
-				</p>
-				<div className='border-[0.3px] border-black/13 rounded-[12px] p-3 w-full h-[52px]'>
-					<div className='flex gap-2 items-center'>
+				</label>
+				<div className='relative'>
+					<div
+						className={`w-full rounded-lg p-3 bg-[#f3f4f7] cursor-pointer flex justify-between items-center text-[13px] leading-5 transition-all ${
+							isPaymentOpen
+								? 'border-[1px] border-blue-500'
+								: 'border-[0.3px] border-black/13'
+						}`}
+						onClick={() => setIsPaymentOpen(!isPaymentOpen)}
+					>
+						<div className='flex gap-2 items-center'>
+							<Image src='/Icon pay.svg' width={30} height={30} alt='logo' />
+							<span className='font-medium text-[#212529] capitalize'>
+								{selectedPayment}
+							</span>
+						</div>
 						<Image
-							src='/Icon pay.svg'
-							width={30}
-							height={30}
-							alt='logo'
-						></Image>
-						<p className='font-medium text-[13px] leading-5 text-[#212529] capitalize'>
-							T-bank (SBP)
-						</p>
+							src='/arrow-down-black.svg'
+							alt='arrow'
+							width={18}
+							height={14}
+							className={`transition-transform ${
+								isPaymentOpen ? 'rotate-180' : ''
+							}`}
+						/>
 					</div>
+					{isPaymentOpen && (
+						<div className='absolute w-full bg-[#f3f4f7] shadow-lg rounded-lg mt-1 z-10 text-[13px] leading-5'>
+							<div
+								className='p-3 hover:bg-gray-100 cursor-pointer flex gap-2 items-center'
+								onClick={() => {
+									setSelectedPayment('T-bank (SBP)')
+									setIsPaymentOpen(false)
+								}}
+							>
+								<Image src='/Icon pay.svg' width={30} height={30} alt='logo' />
+								<span className='font-medium text-[#212529] capitalize'>
+									T-bank (SBP)
+								</span>
+							</div>
+						</div>
+					)}
 				</div>
 			</div>
 
