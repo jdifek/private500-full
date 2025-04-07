@@ -3,7 +3,7 @@
 import { Products } from '@prisma/client'
 import $api from '@/app/http'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ProductForm from './ProductForm'
 
 interface ProductsListProps {
@@ -17,8 +17,17 @@ export default function ProductsList({
 	setProducts,
 	onCreate,
 }: ProductsListProps) {
-	const [gridCols, setGridCols] = useState<1 | 2>(1)
+	// Загружает начальное значение из localStorage или использует 1 по умолчанию
+	const [gridCols, setGridCols] = useState<1 | 2>(() => {
+		const savedCols = localStorage.getItem('gridCols')
+		return savedCols === '2' ? 2 : 1
+	})
 	const [editingProductId, setEditingProductId] = useState<string | null>(null)
+
+	// Сохраняет значение gridCols в localStorage при изменении
+	useEffect(() => {
+		localStorage.setItem('gridCols', gridCols.toString())
+	}, [gridCols])
 
 	const handleDeleteProduct = async (productId: string) => {
 		try {
@@ -30,10 +39,9 @@ export default function ProductsList({
 	}
 
 	const handleUpdateProduct = (updatedProduct: Products) => {
+		console.log('Received updated product:', updatedProduct)
 		setProducts(
-			products.map(p =>
-				p.id === updatedProduct.id ? { ...p, ...updatedProduct } : p
-			)
+			products.map(p => (p.id === updatedProduct.id ? updatedProduct : p))
 		)
 		setEditingProductId(null)
 	}
@@ -84,6 +92,7 @@ export default function ProductsList({
 							<h4 className='text-lg font-semibold text-gray-800'>
 								{product.name}
 							</h4>
+
 							<p className='text-sm text-gray-600'>Type: {product.type}</p>
 							<p className='text-gray-700 mt-2'>{product.description}</p>
 							{product.image ? (
@@ -116,12 +125,9 @@ export default function ProductsList({
 								Delete
 							</button>
 						</div>
-						{/* Выпадающая секция для редактирования */}
 						<div
 							className={`overflow-hidden transition-all duration-300 ease-in-out ${
-								editingProductId === product.id
-									? 'max-h-[550px] mt-4'
-									: 'max-h-0'
+								editingProductId === product.id ? 'max-h-full mt-4' : 'max-h-0'
 							}`}
 						>
 							{editingProductId === product.id && (

@@ -19,7 +19,7 @@ export const Header = () => {
 	const router = useRouter()
 	const localActive = useLocale()
 	const pathname = usePathname()
-	const locale = pathname.split('/')[1] || 'ru' // Извлекаем локаль (по умолчанию "ru")
+	const locale = pathname.split('/')[1] || 'ru'
 	const { isAuthenticated, user } = useAuth()
 
 	useEffect(() => {
@@ -37,8 +37,9 @@ export const Header = () => {
 	}
 
 	const handleNavigateLogin = () => {
-		router.push(`/${locale}/auth/login`) // ✅ Переход работает правильно
+		router.push(`/${locale}/auth/login`)
 	}
+
 	const handleNavigateProfile = () => {
 		router.push(`/${locale}/auth/profile`)
 	}
@@ -51,7 +52,7 @@ export const Header = () => {
 					width={130}
 					height={70}
 					alt={tComponents('logo')}
-				></Image>
+				/>
 			</Link>
 
 			<div className='flex items-center gap-2'>
@@ -64,8 +65,6 @@ export const Header = () => {
 						onClick={() => setIsOpen(!isOpen)}
 						className='cursor-pointer'
 					/>
-
-					{/* Выпадающий список языков */}
 					{isOpen && (
 						<div className='absolute -left-25 mt-2 w-44 bg-[#f3f4f7] border-x-[0.3px] border-b-[0.3px] border-[#aaaaab] rounded-b-[20px] px-2 py-1.5 z-10'>
 							{LANGUAGES.map(lang => (
@@ -91,7 +90,7 @@ export const Header = () => {
 					{!isAuthenticated ? (
 						<>
 							<p
-								className='roboto-condensed text-[15px] leading-3'
+								className='roboto-condensed text-[15px] leading-3 cursor-pointer'
 								onClick={handleNavigateLogin}
 							>
 								{tComponents('login')}
@@ -103,7 +102,7 @@ export const Header = () => {
 										width={16}
 										height={16}
 										alt={tComponents('vkIcon')}
-									></Image>
+									/>
 								</a>
 								<a
 									href='https://www.google.com/intl/ru/account/about/'
@@ -114,29 +113,31 @@ export const Header = () => {
 										width={16}
 										height={16}
 										alt={tComponents('googleIcon')}
-									></Image>
+									/>
 								</a>
 							</div>
 						</>
 					) : (
-						<div className='relative' onClick={handleNavigateProfile}>
-							{user?.avatar ? (
-								<Image
-									src={user.avatar}
-									width={26}
-									height={26}
-									alt={tComponents('profileIcon')}
-									className='rounded-full object-cover cursor-pointer'
-								/>
-							) : (
-								<Image
-									src='/0067fd1434426fd9b509088b5518c42c 1.png'
-									width={26}
-									height={26}
-									alt={tComponents('profileIcon')}
-									className='cursor-pointer'
-								/>
-							)}
+						<div className='flex gap-2 items-center'>
+							<div className='relative' onClick={handleNavigateProfile}>
+								{user?.avatar ? (
+									<Image
+										src={user.avatar}
+										width={26}
+										height={26}
+										alt={tComponents('profileIcon')}
+										className='rounded-full object-cover cursor-pointer'
+									/>
+								) : (
+									<Image
+										src='/0067fd1434426fd9b509088b5518c42c 1.png'
+										width={26}
+										height={26}
+										alt={tComponents('profileIcon')}
+										className='cursor-pointer'
+									/>
+								)}
+							</div>
 						</div>
 					)}
 				</div>

@@ -1,9 +1,10 @@
 'use client'
+
 import { CustomNotification } from '@/components/CustomNotification'
 import PromotionSlider from '@/components/PromotionSlider'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import $api from '../http'
 import { Products } from '@prisma/client'
@@ -14,6 +15,9 @@ export default function Home() {
 	const tHome = useTranslations('Home')
 	const tComponents = useTranslations('Components')
 	const searchParams = useSearchParams()
+	const router = useRouter()
+	const pathname = usePathname()
+	const locale = pathname.split('/')[1] || 'ru'
 	const verified = searchParams.get('verified')
 	const [products, setProducts] = useState<Products[]>([])
 
@@ -40,6 +44,11 @@ export default function Home() {
 
 	const servicesProducts = products.filter(el => el.type === 'SERVICE')
 	const mobileProducts = products.filter(el => el.type === 'MOBILEGAME')
+
+	const handleProductClick = (productId: string) => {
+		router.push(`${locale}/order/${productId}`)
+	}
+
 	return (
 		<>
 			<div className='mt-3 mb-7'>
@@ -59,7 +68,6 @@ export default function Home() {
 					/>
 				</div>
 				<PromotionSlider />
-
 				<div className='mt-7'>
 					<div className='flex gap-3'>
 						<Image
@@ -74,11 +82,15 @@ export default function Home() {
 					</div>
 
 					<div className='grid grid-cols-2 gap-y-2 gap-x-2 mt-3 place-items-center'>
-						{servicesProducts.map((product, i) => (
-							<div key={i} className='flex justify-center'>
+						{servicesProducts.map(product => (
+							<div
+								key={product.id}
+								className='flex justify-center cursor-pointer'
+								onClick={() => handleProductClick(product.id)}
+							>
 								<Image
-									src={product.image}
-									alt='img'
+									src={product.image || '/default-service.png'}
+									alt={product.name}
 									width={150}
 									height={150}
 									className='object-cover'
@@ -89,7 +101,7 @@ export default function Home() {
 				</div>
 
 				<div className='mt-7'>
-					<div className='flex gap-3 '>
+					<div className='flex gap-3'>
 						<Image src='/arcade.svg' alt='arcade icon' width={14} height={14} />
 						<h2 className='font-medium text-[16px] leading-2.5 text-[#212529]'>
 							{tHome('titles.mobileGames')}
@@ -97,11 +109,15 @@ export default function Home() {
 					</div>
 
 					<div className='grid grid-cols-2 gap-y-2 gap-x-2 mt-3 place-items-center'>
-						{mobileProducts.map((product, i) => (
-							<div key={i} className='flex justify-center'>
+						{mobileProducts.map(product => (
+							<div
+								key={product.id}
+								className='flex justify-center cursor-pointer'
+								onClick={() => handleProductClick(product.id)}
+							>
 								<Image
-									src={product.image}
-									alt='img'
+									src={product.image || '/default-game.png'}
+									alt={product.name}
 									width={150}
 									height={150}
 									className='object-cover'
@@ -111,7 +127,6 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-
 			{showNotification && (
 				<CustomNotification
 					message='Ваш email успешно подтвержден!'

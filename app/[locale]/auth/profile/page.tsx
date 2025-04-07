@@ -16,7 +16,7 @@ const Profile = () => {
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
 	const localActive = useLocale()
-	const { setIsAuthenticated } = useAuth()
+	const { setIsAuthenticated, logout } = useAuth()
 	const fileInputRef = useRef<HTMLInputElement>(null)
 
 	useEffect(() => {
@@ -77,8 +77,7 @@ const Profile = () => {
 	}
 
 	const handleExit = () => {
-		localStorage.removeItem('accessToken')
-		localStorage.removeItem('refreshToken')
+		logout()
 		setIsAuthenticated(false)
 		router.push('/')
 	}

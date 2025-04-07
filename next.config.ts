@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
 			'postimgs.org',
 			'alamocitygolftrail.com',
 			'assets1.ignimgs.com',
+			'seagm-media.seagmcdn.com',
 			// это для аватарок, домен бд, не удалять
 			'etgmohcvgdkvuqnthiuz.supabase.co',
 		],

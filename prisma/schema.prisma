@@ -25,14 +25,14 @@ model User {
 }
 
 model Products {
-  id          String   @id @default(uuid())
+  id          String      @id @default(uuid())
   name        String
   description String?
-  price       Float?
+  type        TypeProduct @default(SERVICE)
   image       String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @updatedAt
-  reviews     Review[] @relation("ProductReviews")
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @default(now()) @updatedAt
+  reviews     Review[]    @relation("ProductReviews")
 }
 
 model Review {

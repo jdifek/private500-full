@@ -66,54 +66,50 @@ export async function GET(
 
 export async function PATCH(
 	request: Request,
-	context: { params: Promise<{ id: string }> }
+	{ params }: { params: { id: string } }
 ) {
 	const authHeader = request.headers.get('authorization')
-	const tokenCheck = verifyTokenAndRole(authHeader)
-	if ('error' in tokenCheck) {
-		return NextResponse.json(
-			{ error: tokenCheck.error },
-			{ status: tokenCheck.status }
-		)
+	if (!authHeader || !authHeader.startsWith('Bearer ')) {
+		return NextResponse.json({ error: 'No token provided' }, { status: 401 })
 	}
 
-	const params = await context.params
-	const { id } = params
-	if (!id) {
-		return NextResponse.json({ error: 'Invalid product ID' }, { status: 400 })
-	}
-
-	const body = await request.json()
-	const updatedProductData = body.updatedProductData
-	if (!updatedProductData) {
-		return NextResponse.json({ error: 'No data to update' }, { status: 400 })
-	}
-
-	const updateData: { [key: string]: any } = {}
-	if ('name' in updatedProductData) updateData.name = updatedProductData.name
-	if ('type' in updatedProductData) updateData.type = updatedProductData.type
-	if ('image' in updatedProductData) updateData.image = updatedProductData.image
-	if ('description' in updatedProductData)
-		updateData.description = updatedProductData.description
-
-	if (Object.keys(updateData).length === 0) {
-		return NextResponse.json(
-			{ error: 'No valid fields to update' },
-			{ status: 400 }
-		)
-	}
-
+	const token = authHeader.split(' ')[1]
 	try {
-		const product = await prisma.products.update({
-			where: { id },
-			data: updateData,
+		const decoded = jwt.verify(
+			token,
+			process.env.JWT_ACCESS_SECRET as string
+		) as {
+			userId: string
+			email: string
+			role: string
+		}
+
+		if (decoded.role !== 'ADMIN') {
+			return NextResponse.json(
+				{ error: 'Forbidden: Admins only' },
+				{ status: 403 }
+			)
+		}
+
+		const { updatedProductData } = await request.json()
+		const { name, type, image, description } = updatedProductData
+
+		const updatedProduct = await prisma.products.update({
+			where: { id: params.id },
+			data: {
+				name: name || undefined,
+				type: type || undefined,
+				image: image || undefined,
+				description: description || undefined,
+			},
 		})
-		return NextResponse.json(product, { status: 200 })
+
+		return NextResponse.json(updatedProduct, { status: 200 })
 	} catch (error) {
-		console.error('Error updating product:', error)
+		console.error('PATCH /api/products/[id] error:', error)
 		return NextResponse.json(
-			{ error: 'Product not found or update failed' },
-			{ status: 404 }
+			{ error: 'Failed to update product' },
+			{ status: 500 }
 		)
 	}
 }

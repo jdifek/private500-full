@@ -1,8 +1,15 @@
 'use client'
 
-import { Products, TypeProduct } from '@prisma/client'
+import { Products } from '@prisma/client'
 import $api from '@/app/http'
 import { FormEvent, useState } from 'react'
+
+interface IProductState {
+	name: string
+	type: 'SERVICE' | 'MOBILEGAME'
+	image: string
+	description: string
+}
 
 interface ProductFormProps {
 	initialProduct?: Products
@@ -15,9 +22,9 @@ export default function ProductForm({
 	onSubmit,
 	onClose,
 }: ProductFormProps) {
-	const [product, setProduct] = useState({
+	const [product, setProduct] = useState<IProductState>({
 		name: initialProduct?.name || '',
-		type: initialProduct?.type || TypeProduct.SERVICE,
+		type: initialProduct?.type || 'SERVICE',
 		image: initialProduct?.image || '',
 		description: initialProduct?.description || '',
 	})
@@ -30,6 +37,7 @@ export default function ProductForm({
 				response = await $api.patch(`/products/${initialProduct.id}`, {
 					updatedProductData: product,
 				})
+				console.log('Updated product from server:', response.data)
 			} else {
 				response = await $api.post('/products', product)
 			}
@@ -37,7 +45,7 @@ export default function ProductForm({
 			if (!initialProduct) {
 				setProduct({
 					name: '',
-					type: TypeProduct.SERVICE,
+					type: 'SERVICE',
 					image: '',
 					description: '',
 				})
@@ -50,9 +58,11 @@ export default function ProductForm({
 		}
 	}
 
-	const handleKeyPress = (e: React.KeyboardEvent) => {
+	const handleKeyPress = (
+		e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
 		if (e.key === 'Enter') {
-			handleSubmit(e as any)
+			handleSubmit(e as FormEvent)
 		}
 	}
 
@@ -74,27 +84,6 @@ export default function ProductForm({
 					onKeyPress={handleKeyPress}
 					className='w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
 				/>
-			</div>
-			<div className='mb-4'>
-				<label className='block mb-2 text-sm font-medium text-gray-700'>
-					Type
-				</label>
-				<select
-					value={product.type}
-					onChange={e =>
-						setProduct(prev => ({
-							...prev,
-							type: e.target.value as TypeProduct,
-						}))
-					}
-					className='w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
-				>
-					{Object.values(TypeProduct).map(type => (
-						<option key={type} value={type}>
-							{type}
-						</option>
-					))}
-				</select>
 			</div>
 			<div className='mb-4'>
 				<label className='block mb-2 text-sm font-medium text-gray-700'>
@@ -122,6 +111,24 @@ export default function ProductForm({
 					onKeyPress={handleKeyPress}
 					className='w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 h-[120px]'
 				/>
+			</div>
+			<div className='mb-4'>
+				<label className='block mb-2 text-sm font-medium text-gray-700'>
+					Type
+				</label>
+				<select
+					value={product.type}
+					onChange={e =>
+						setProduct(prev => ({
+							...prev,
+							type: e.target.value as 'SERVICE' | 'MOBILEGAME',
+						}))
+					}
+					className='w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+				>
+					<option value='SERVICE'>Service</option>
+					<option value='MOBILEGAME'>Mobile Game</option>
+				</select>
 			</div>
 			<div className='flex gap-2'>
 				<button
