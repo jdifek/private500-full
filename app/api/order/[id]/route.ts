@@ -7,10 +7,17 @@ export async function POST(
 	{ params }: { params: { id: string } }
 ) {
 	try {
+		console.log('=== Начало обработки заказа ===')
+		console.log('Получен ID продукта:', params.id)
+		
 		const productId = await params.id
-		const { bigoId, diamonds, totalCost } = await request.json()
+		const requestBody = await request.json()
+		console.log('Получены данные заказа:', requestBody)
+		
+		const { bigoId, diamonds, totalCost } = requestBody
 
 		if (!bigoId || !diamonds || !totalCost) {
+			console.error('Отсутствуют обязательные поля:', { bigoId, diamonds, totalCost })
 			return NextResponse.json(
 				{ error: 'Missing required fields' },
 				{ status: 400 }
@@ -18,10 +25,14 @@ export async function POST(
 		}
 
 		// Проверяет, что продукт существует и это SERVICE (Bigo Live)
+		console.log('Поиск продукта в базе данных...')
 		const product = await prisma.products.findUnique({
 			where: { id: productId },
 		})
+		console.log('Найден продукт:', product)
+
 		if (!product || product.type !== 'SERVICE') {
+			console.error('Неверный продукт или не сервис:', product)
 			return NextResponse.json(
 				{ error: 'Invalid product or not a mobile game' },
 				{ status: 400 }
@@ -29,9 +40,12 @@ export async function POST(
 		}
 
 		// Тестовая платёжка — всегда успех
+		console.log('Имитация платежа...')
 		const paymentResult = { success: true, message: 'Test payment successful' }
+		console.log('Результат платежа:', paymentResult)
 
 		if (!paymentResult.success) {
+			console.error('Ошибка платежа:', paymentResult.message)
 			return NextResponse.json(
 				{ error: paymentResult.message },
 				{ status: 400 }
@@ -39,8 +53,11 @@ export async function POST(
 		}
 
 		// Данные для Bigo Live API
+		console.log('Подготовка данных для Bigo Live API...')
 		const seqId = `${Date.now()}-order-${bigoId}`
-		const timestamp = Date.now()
+		const timestamp = Math.floor(Date.now() / 1000);
+		console.log('Сгенерированные параметры:', { seqId, timestamp })
+
 		const rsaPrivateKey = `-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAwaC/CEO4mQel1vuz4g2uzzE0qSZswGGF7gH5poFhuFrGt651
 MN5pfReYKgmoZR09y49NjO47cSuFHymp1/ENZ+na7HfJext6+1p/vPltD1xAWQtp
@@ -83,10 +100,14 @@ RfFkXlmQnQJsAZ48wuQGo1/YgnXS32RrLiPYH6eXuiS6+PvjgsL9BvQ43WZk2+mL
       "currency": "RUB"
     }${apiEndpoint}${timestamp}`
 
+		console.log('Данные для подписи:', strData)
+
 		// createSign для генерации подписи
+		console.log('Генерация подписи...')
 		const signer = createSign('SHA256')
 		signer.update(strData)
 		const signature = signer.sign(rsaPrivateKey, 'base64')
+		console.log('Подпись сгенерирована')
 
 		const postData = {
 			recharge_bigoid: bigoId,
@@ -106,6 +127,11 @@ RfFkXlmQnQJsAZ48wuQGo1/YgnXS32RrLiPYH6eXuiS6+PvjgsL9BvQ43WZk2+mL
 			'bigo-oauth-signature': signature,
 		}
 
+		console.log('Отправка запроса к Bigo Live API...')
+		console.log('URL:', url)
+		console.log('Headers:', headers)
+		console.log('Body:', postData)
+
 		let bigoResponse
 		try {
 			const response = await fetch(url, {
@@ -113,9 +139,11 @@ RfFkXlmQnQJsAZ48wuQGo1/YgnXS32RrLiPYH6eXuiS6+PvjgsL9BvQ43WZk2+mL
 				headers,
 				body: JSON.stringify(postData),
 			})
+			console.log('Получен ответ от Bigo Live API')
 			bigoResponse = await response.json()
+			console.log('Ответ Bigo Live API:', bigoResponse)
 		} catch (error) {
-			console.error('Bigo Live API error:', error)
+			console.error('Ошибка при запросе к Bigo Live API:', error)
 			bigoResponse = {
 				rescode: '999',
 				message: 'Failed to connect to Bigo Live API (test mode)',
@@ -124,8 +152,11 @@ RfFkXlmQnQJsAZ48wuQGo1/YgnXS32RrLiPYH6eXuiS6+PvjgsL9BvQ43WZk2+mL
 		}
 
 		const status = bigoResponse.rescode === '0' ? 'completed' : 'failed'
-		const bigoMessage =
-			bigoResponse.msg || bigoResponse.message || 'Unknown response'
+		const bigoMessage = bigoResponse.msg || bigoResponse.message || 'Unknown response'
+		console.log('Финальный статус заказа:', status)
+		console.log('Сообщение от Bigo Live:', bigoMessage)
+		console.log('=== Завершение обработки заказа ===')
+
 		return NextResponse.json(
 			{
 				status,
@@ -137,7 +168,7 @@ RfFkXlmQnQJsAZ48wuQGo1/YgnXS32RrLiPYH6eXuiS6+PvjgsL9BvQ43WZk2+mL
 			{ status: 200 }
 		)
 	} catch (error) {
-		console.error('Error processing order:', error)
+		console.error('Критическая ошибка при обработке заказа:', error)
 		return NextResponse.json(
 			{ error: 'Failed to process order' },
 			{ status: 500 }
