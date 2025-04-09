@@ -184,6 +184,38 @@
 					"correspondentAccount": "Correspondent account"
 				}
 			}
+		},
+		"faq": {
+			"question1": "I'm getting a payment error. What should I do?",
+			"answer1": "If you encounter an error during payment, please contact support and specify which game it relates to, the payment method you chose, and attach a screenshot of the error along with your game details (ID/email).",
+			"question2": "What should I do if I entered the wrong UID?",
+			"answer2": "If you noticed the mistake before payment, simply go back and enter the correct ID.\nIf the payment has already been made, urgently contact support:\n\nTelegram: @davo_dior55\nWhatsApp: +7 (924) 004 0070\nE-mail: hoyakap@gmail.com\nThe sooner you reach out, the higher the chance we can adjust the order before it’s processed.",
+			"question3": "Can I cancel or refund an order?",
+			"answer3": "Once the payment is made and the transaction is confirmed, the order is considered completed, and refunds are not available. However, if the order was placed with an error, contact support—we’ll try to assist within what’s possible.",
+			"question4": "What should I do if my order is 'in processing'?",
+			"answer4": "This status means we’ve received your payment, and it’s being processed. If more than 30 minutes have passed and the diamonds haven’t arrived, contact us—we’ll check it out.",
+			"question5": "What should I do if the payment went through but the diamonds didn’t arrive?",
+			"answer5": "Make sure you entered the correct ID.\nCheck your order status in your personal account. \nContact support and provide:\n\n- A screenshot of the payment\n- Your Bigo Live ID\n- The email used for the order.",
+			"question6": "What are Bigo Live diamonds and what are they used for?",
+			"answer6": "Diamonds are a virtual currency in the Bigo Live app that you can use to:\n\n- Send gifts to your favorite streamers during broadcasts.\n- Gain access to exclusive features and events.\n- Level up your account and interact with other users.",
+			"question7": "How do I top up my Bigo Live account on your site?",
+			"answer7": "1. Select the desired diamond package. \n2. Proceed to checkout. \n3. Enter your details: Bigo Live ID (double-check it!). \n4. Confirm the accuracy of the entered data. \n5. Choose a payment method. \n6. Complete the payment and wait for confirmation. \n7. Diamonds will be automatically credited to your account after processing.",
+			"question8": "Where can I find my Bigo Live ID?",
+			"answer8": "1. Open the Bigo Live app. \n2. Go to the 'Me' section (profile). \n3. Your ID will be listed below your nickname. \n\nImportant: Enter only the numbers, without the 'ID:' prefix. For example: 100123456.",
+			"question9": "How quickly are diamonds delivered?",
+			"answer9": "After a successful payment, diamonds are usually credited to your account within a few minutes. In rare cases, delivery may take up to 30 minutes. If it takes longer, contact support.",
+			"question10": "What payment methods are available?",
+			"answer10": "We support a variety of convenient methods: \n\n- Bank cards (Visa, MasterCard, UnionPay).",
+			"question11": "Is it safe to order from you?",
+			"answer11": "Yes! DON-VIP is an officially authorized reseller of Bigo Live diamonds. We use secure payment gateways and guarantee transaction safety.",
+			"question12": "How are the products I purchase from you delivered?",
+			"answer12": "The process works as follows: \n\n1. The client pays for the product. \n2. The payment is sent to the bank or app server. \n3. The bank confirms the payment to us. \n4. We notify the developer of your game/app that the order is paid, and you receive your product.",
+			"question13": "How long does order delivery take?",
+			"answer13": "Delivery time depends on the chosen payment channel. Some payment methods are processed instantly, while others may take longer. Please check the processing time information for your selected payment method.",
+			"question14": "Do you have a bot assistant?",
+			"answer14": "Yes! We have a digital assistant, DON-VIP Assist, that: \n\n- Guides you on how to place an order. \n- Helps you choose a package. \n- Quickly resolves common issues. \n- Directs you to support if needed. \n\nTo get started, just message us on Telegram: @davo_dior55.",
+			"question15": "How can I contact support?",
+			"answer15": "You can reach support via:\n\n- E-mail: hoyakap@gmail.com\n- Telegram: @davo_dior55\n- WhatsApp: +7 (924) 004 0070\n\nThere’s also an assistant available on the site."
 		}
 	},
 	"Coupon": {
@@ -244,7 +276,7 @@
 	"Footer": {
 		"userAgreement": "user agreement",
 		"dataProcessingPolicy": "data processing policy",
-		"returnPolicy": "return policy",
+		"publicOffer": "public offer",
 		"contactUs": "contact us",
 		"reviews": "reviews",
 		"faq": "FAQ",
@@ -269,6 +301,7 @@
 	"Search": {
 		"searchPlaceholder": "Find a service or a game",
 		"suggestedGames": "Suggested games",
-		"noGamesFound": "Nothing found matching your request"
+		"noGamesFound": "Nothing found matching your request",
+		"searchQuestion": "Search question..."
 	}
 }

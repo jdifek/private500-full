@@ -16,7 +16,7 @@ const Footer = () => {
 		},
 		{
 			href: '/about/oferta',
-			label: tFooter('returnPolicy'),
+			label: tFooter('publicOffer'),
 		},
 		{
 			href: '/about/contact',

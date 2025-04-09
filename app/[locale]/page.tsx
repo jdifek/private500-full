@@ -45,8 +45,14 @@ export default function Home() {
 	const servicesProducts = products.filter(el => el.type === 'SERVICE')
 	const mobileProducts = products.filter(el => el.type === 'MOBILEGAME')
 
-	const handleProductClick = (productId: string) => {
-		router.push(`${locale}/order/${productId}`)
+	const handleProductClick = (product: Products) => {
+		if (product.name.toLowerCase().includes('bigo live')) {
+			router.push(`/${locale}/order/bigo-live`)
+		} else if (product.name.toLowerCase().includes('smile code')) {
+			router.push(`/${locale}/order/smile-code`)
+		} else {
+			router.push(`${locale}/order/${product.id}`)
+		}
 	}
 
 	return (
@@ -86,7 +92,7 @@ export default function Home() {
 							<div
 								key={product.id}
 								className='flex justify-center cursor-pointer'
-								onClick={() => handleProductClick(product.id)}
+								onClick={() => handleProductClick(product)}
 							>
 								<Image
 									src={product.image || '/default-service.png'}
@@ -113,7 +119,7 @@ export default function Home() {
 							<div
 								key={product.id}
 								className='flex justify-center cursor-pointer'
-								onClick={() => handleProductClick(product.id)}
+								onClick={() => handleProductClick(product)}
 							>
 								<Image
 									src={product.image || '/default-game.png'}
