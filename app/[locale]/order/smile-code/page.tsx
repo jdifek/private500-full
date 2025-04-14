@@ -8,16 +8,19 @@ import $api from '@/app/http'
 import { Toaster, toast } from 'react-hot-toast'
 
 const crystals = [
-	{ price: 37.11, amount: 20 },
-	{ price: 92.78, amount: 50 },
-	{ price: 185.56, amount: 100 },
-	{ price: 371.12, amount: 200 },
-	{ price: 927.79, amount: 500 },
-	{ price: 1855.58, amount: 1000 },
-	{ price: 3711.16, amount: 2000 },
-	{ price: 9277.91, amount: 5000 },
-	{ price: 18555.81, amount: 10000 },
-]
+  { price: 0.19, amount: 8 },
+  { price: 0.76, amount: 35 },
+  { price: 1.88, amount: 88 },
+  { price: 2.83, amount: 132 },
+  { price: 5.65, amount: 264 },
+  { price: 9.41, amount: 440 },
+  { price: 15.04, amount: 734 },
+  { price: 18.81, amount: 933 },
+  { price: 28.22, amount: 1410 },
+  { price: 37.63, amount: 1881 },
+  { price: 56.43, amount: 2845 },
+  { price: 122.27, amount: 6163 },
+];
 
 export default function SmileCodeOrder() {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
