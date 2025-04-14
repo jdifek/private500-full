@@ -18,8 +18,13 @@ const diamonds = [
 	{ price: 9277.91, amount: 5000 },
 	{ price: 18555.81, amount: 10000 },
 ]
+type OrderProps = {
+  params: {
+    id: string;
+  };
+};
 
-export default function Order({ params }: { params: { id: string } }) {
+export default function Order({ params }: OrderProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const [selected, setSelected] = useState(20)
 	const [userId, setUserId] = useState('')
