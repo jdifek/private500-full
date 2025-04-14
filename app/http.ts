@@ -45,7 +45,7 @@ $api.interceptors.response.use(
 				console.error('Token refresh failed:', refreshError)
 				localStorage.removeItem('accessToken')
 				localStorage.removeItem('refreshToken')
-				window.location.href = '/ru/auth/login'
+				// window.location.href = '/'
 				return Promise.reject(refreshError)
 			}
 		}
