@@ -23,19 +23,21 @@ const Login = () => {
 	const locale = pathname.split('/')[1] || 'ru'
 	const { login } = useAuth()
 
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-	const phoneRegex = /^\+?[1-9]\d{9,14}$/
-
 	useEffect(() => {
-		if (!identifier) {
-			setIsEmailValid(null)
-		} else if (emailRegex.test(identifier) || phoneRegex.test(identifier)) {
-			setIsEmailValid(true)
-		} else {
-			setIsEmailValid(false)
-		}
-		setIsPasswordValid(password.length >= 8)
-	}, [identifier, password])
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const phoneRegex = /^\+?[1-9]\d{9,14}$/
+  
+    if (!identifier) {
+      setIsEmailValid(null)
+    } else if (emailRegex.test(identifier) || phoneRegex.test(identifier)) {
+      setIsEmailValid(true)
+    } else {
+      setIsEmailValid(false)
+    }
+  
+    // Устанавливаем isPasswordValid в null, если пароль пустой
+    setIsPasswordValid(password === '' ? null : password.length >= 8)
+  }, [identifier, password])
 
 	const getBorderColor = (isValid: boolean | null) =>
 		isValid === null

@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
 			'assets1.ignimgs.com',
 			'seagm-media.seagmcdn.com',
 			// это для аватарок, домен бд, не удалять
-			'etgmohcvgdkvuqnthiuz.supabase.co',
+			'wimtycmspviijbwevgwd.supabase.co',
 		],
 	},
 }

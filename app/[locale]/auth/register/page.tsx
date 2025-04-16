@@ -85,15 +85,9 @@ const Register = () => {
 				code,
 			})
 			setError('')
-			setTimeout(
-				() =>
-					router.push(
-						`/${locale}/auth/registerSuccess?identifier=${encodeURIComponent(
-							identifier
-						)}`
-					),
-				2000
-			)
+      setTimeout(() => {
+        router.push(`/${locale}`)
+      }, 2000)
 		} catch (err: any) {
 			setIsError(true)
 			setError(err.response?.data?.error || tAuth('verificationFailed'))
